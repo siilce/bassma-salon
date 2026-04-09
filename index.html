@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salon Bassma – Damen Friseursalon Erfurt</title>
+  <meta name="description" content="Professionelle Haar- und Kosmetikbehandlungen in entspannter Atmosphäre. Salon Bassma in Erfurt – Ihr exklusiver Damensalon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================
+       TOKENS
+    ========================================= */
+    :root {
+      --bg:          #0F0806;
+      --surface:     #1A0F09;
+      --surface-2:   #221410;
+      --surface-3:   #2A1A12;
+      --gold:        #C9A46E;
+      --gold-light:  #E8C99A;
+      --gold-dim:    #8B6E47;
+      --gold-pale:   rgba(201,164,110,.08);
+      --cream:       #F5EAD7;
+      --cream-dim:   #BFB09C;
+      --rose:        #C47B6A;
+      --rose-dim:    #8C5547;
+      --muted:       #7A6255;
+      --light:       #F7F1EA;
+      --light-2:     #EDE3D4;
+      --r-sm: 8px; --r-md: 16px; --r-lg: 24px; --r-xl: 40px;
+      --ease: 0.4s cubic-bezier(.4,0,.2,1);
+      --disp: 'Cormorant Garamond', Georgia, serif;
+      --body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    /* =========================================
+       RESET
+    ========================================= */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--body);background:var(--bg);color:var(--cream);overflow-x:hidden;cursor:none}
+    body.no-scroll{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    ul{list-style:none}
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+      .reveal{opacity:1!important;transform:none!important}
+      #cg,#cd{display:none}
+    }
+
+    /* =========================================
+       CURSOR
+    ========================================= */
+    #cg{position:fixed;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(201,164,110,.09) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);z-index:9999;transition:opacity .3s}
+    #cd{position:fixed;width:7px;height:7px;border-radius:50%;background:var(--gold);pointer-events:none;transform:translate(-50%,-50%);z-index:10000;transition:transform .15s,opacity .3s}
+
+    /* =========================================
+       NAV
+    ========================================= */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;transition:background var(--ease),padding var(--ease),border-color var(--ease)}
+    .nav.stuck{background:rgba(15,8,6,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,164,110,.13);padding:14px 60px}
+    .nav-logo{font-family:var(--disp);font-size:1.55rem;font-weight:500;letter-spacing:.04em;line-height:1;display:flex;flex-direction:column}
+    .nav-logo small{font-family:var(--body);font-size:.6rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+    .nav-links{display:flex;align-items:center;gap:34px}
+    .nav-links a{font-size:.78rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-dim);position:relative;transition:color var(--ease)}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width var(--ease)}
+    .nav-links a:hover{color:var(--cream)}
+    .nav-links a:hover::after{width:100%}
+    .nav-btn{font-family:var(--body);font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:11px 26px;border-radius:100px;transition:background var(--ease)}
+    .nav-btn:hover{background:var(--gold-light)}
+    .nav-ham{display:none;flex-direction:column;gap:5px;cursor:none;background:none;border:none;padding:4px}
+    .nav-ham span{display:block;width:22px;height:1.5px;background:var(--cream);transition:var(--ease);transform-origin:center}
+    .nav-ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .nav-ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .nav-ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    .mob-overlay{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .4s}
+    .mob-overlay.open{opacity:1;pointer-events:auto}
+    .mob-overlay a{font-family:var(--disp);font-size:2.8rem;font-weight:300;color:var(--cream);transition:color var(--ease)}
+    .mob-overlay a:hover{color:var(--gold)}
+    .mob-overlay .nav-btn{font-family:var(--body);font-size:.85rem;padding:14px 36px;margin-top:12px}
+
+    /* =========================================
+       REVEAL
+    ========================================= */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1)}
+    .reveal.vis{opacity:1;transform:none}
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
+    .d4{transition-delay:.4s} .d5{transition-delay:.5s} .d6{transition-delay:.6s}
+
+    /* =========================================
+       SHARED HELPERS
+    ========================================= */
+    .label{font-size:.68rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+    .label::before{content:'';width:22px;height:1px;background:var(--gold);flex-shrink:0}
+    .label.dark{color:var(--gold-dim)}
+    .label.dark::before{background:var(--gold-dim)}
+
+    .hdl{font-family:var(--disp);font-weight:300;line-height:1.08;color:var(--cream)}
+    .hdl em{font-style:italic;color:var(--gold-light)}
+    .hdl.on-light{color:var(--bg)}
+    .hdl.on-light em{color:var(--rose)}
+
+    .ornament{display:flex;align-items:center;gap:14px;color:var(--gold-dim);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase}
+    .ornament::before,.ornament::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim))}
+    .ornament::after{background:linear-gradient(to left,transparent,var(--gold-dim))}
+
+    /* =========================================
+       BUTTONS
+    ========================================= */
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;border-radius:100px;border:none;cursor:none;position:relative;overflow:hidden;transition:transform .2s}
+    .btn svg{width:16px;height:16px;flex-shrink:0}
+
+    .btn-gold{color:var(--bg);background:var(--gold)}
+    .btn-gold::before{content:'';position:absolute;inset:0;background:var(--gold-light);transform:translateX(-101%);transition:transform .5s cubic-bezier(.4,0,.2,1);border-radius:inherit}
+    .btn-gold:hover::before{transform:none}
+    .btn-gold span{position:relative;z-index:1}
+
+    .btn-outline{color:var(--cream-dim);background:none;border:1px solid rgba(245,234,215,.2)}
+    .btn-outline:hover{color:var(--cream);border-color:rgba(245,234,215,.45)}
+
+    .btn-wa{color:var(--bg);background:#25D366}
+    .btn-wa:hover{background:#1fbb59}
+    .btn-wa span{position:relative;z-index:1}
+
+    /* =========================================
+       HERO
+    ========================================= */
+    .hero{min-height:100vh;display:grid;grid-template-columns:58% 1fr;position:relative;overflow:hidden;background:var(--bg)}
+    .hero-bg-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 80% 40%,rgba(196,123,106,.07) 0%,transparent 70%),radial-gradient(ellipse 50% 60% at 10% 80%,rgba(201,164,110,.05) 0%,transparent 60%);pointer-events:none}
+
+    /* subtle noise texture */
+    .hero-bg-glow::after{content:'';position:absolute;inset:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+
+    .hero-content{padding:160px 60px 120px 80px;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center}
+    .hero-headline{font-family:var(--disp);font-size:clamp(3.8rem,6vw,7.2rem);font-weight:300;line-height:1.03;color:var(--cream);margin-bottom:28px}
+    .hero-headline em{font-style:italic;color:var(--gold-light);display:block}
+    .hero-sub{font-size:.98rem;font-weight:300;line-height:1.78;color:var(--cream-dim);max-width:400px;margin-bottom:44px}
+    .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+
+    /* quick-info strip under CTAs */
+    .hero-quickinfo{margin-top:48px;display:flex;gap:24px;flex-wrap:wrap}
+    .qinfo{display:flex;align-items:center;gap:8px;font-size:.75rem;color:var(--muted)}
+    .qinfo svg{width:14px;height:14px;color:var(--gold-dim);flex-shrink:0}
+    .qinfo strong{color:var(--cream-dim);font-weight:400}
+
+    .hero-visual{position:relative;display:flex;align-items:center;justify-content:center;padding:120px 40px 80px 0}
+    .hero-blob{position:absolute;width:440px;height:520px;border-radius:60% 40% 55% 45%/50% 55% 45% 50%;background:linear-gradient(145deg,#3D1E14 0%,#5A2B1A 45%,#271008 100%);animation:blob 9s ease-in-out infinite}
+    .hero-blob-2{position:absolute;width:380px;height:460px;border-radius:45% 55% 40% 60%/55% 40% 60% 45%;background:linear-gradient(160deg,rgba(201,164,110,.12) 0%,rgba(196,123,106,.06) 50%,transparent 100%);animation:blob 9s ease-in-out infinite reverse;animation-delay:-2s}
+    .hero-img-wrap{position:absolute;width:360px;height:460px;border-radius:55% 45% 58% 42%/48% 52% 48% 52%;overflow:hidden;animation:blob 9s ease-in-out infinite;z-index:2}
+    .hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(15%) contrast(1.05)}
+    .hero-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(15,8,6,.45) 100%)}
+    @keyframes blob{0%,100%{border-radius:60% 40% 55% 45%/50% 55% 45% 50%}33%{border-radius:40% 60% 45% 55%/55% 45% 50% 50%}66%{border-radius:55% 45% 60% 40%/45% 50% 55% 45%}}
+
+    /* decorative gold ring */
+    .hero-ring{position:absolute;width:480px;height:480px;border-radius:50%;border:1px solid rgba(201,164,110,.12);animation:ring-pulse 4s ease-in-out infinite}
+    .hero-ring-2{position:absolute;width:360px;height:360px;border-radius:50%;border:1px solid rgba(201,164,110,.08);animation:ring-pulse 4s ease-in-out infinite;animation-delay:-2s}
+    @keyframes ring-pulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.04);opacity:1}}
+
+    .float-card{position:absolute;background:rgba(26,15,9,.9);backdrop-filter:blur(16px);border:1px solid rgba(201,164,110,.18);border-radius:var(--r-md);padding:18px 24px;display:flex;flex-direction:column;gap:5px;animation:float 7s ease-in-out infinite}
+    .float-card:first-of-type{bottom:26%;right:2%;animation-delay:-3s}
+    .float-card:last-of-type{top:26%;left:-2%;animation-delay:-6s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .fc-num{font-family:var(--disp);font-size:2rem;font-weight:500;color:var(--gold);line-height:1}
+    .fc-lbl{font-size:.65rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim)}
+
+    .scroll-hint{position:absolute;bottom:48px;left:80px;display:flex;align-items:center;gap:12px;z-index:3}
+    .scroll-hint span{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+    .scroll-line{width:44px;height:1px;background:var(--muted);overflow:hidden;position:relative}
+    .scroll-line::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(--gold);animation:sl 2.2s ease-in-out infinite}
+    @keyframes sl{0%{left:-100%}50%{left:0}100%{left:100%}}
+
+    /* bottom wave divider */
+    .wave-divider{position:absolute;bottom:-2px;left:0;right:0;z-index:2}
+
+    /* =========================================
+       ABOUT
+    ========================================= */
+    .sec-about{background:var(--light);color:var(--bg);padding:120px 80px;position:relative}
+    .about-wrap{max-width:1200px;margin:0 auto}
+    .about-headline{font-family:var(--disp);font-size:clamp(2.4rem,3.8vw,4.2rem);font-weight:300;line-height:1.1;color:var(--bg);max-width:640px;margin-bottom:20px}
+    .about-headline em{font-style:italic;color:var(--rose)}
+    .about-body{font-size:.97rem;font-weight:300;line-height:1.82;color:#5A4035;max-width:520px;margin-bottom:48px}
+    .about-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:52px}
+    .pill{display:flex;align-items:center;gap:8px;font-size:.76rem;color:#6A4C3C;background:rgba(201,164,110,.1);border:1px solid rgba(201,164,110,.25);padding:9px 18px;border-radius:100px}
+    .pill svg{width:14px;height:14px;color:var(--gold-dim);flex-shrink:0}
+    .about-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+    .about-photo{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4;margin-bottom:24px}
+    .about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(20%) contrast(1.05);transition:transform .6s var(--ease)}
+    .about-photo:hover img{transform:scale(1.03)}
+
+    /* team grid */
+    .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+    .team-card{display:flex;flex-direction:column;gap:0}
+    .team-card .about-photo{margin-bottom:0;border-radius:var(--r-md)}
+    @media(max-width:640px){.team-grid{grid-template-columns:1fr;gap:20px}}
+    .bc-bg{position:absolute;inset:0;z-index:0;overflow:hidden;border-radius:inherit}
+    .bc-bg img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:.18;transition:opacity var(--ease),transform .6s var(--ease)}
+    .bc:hover .bc-bg img{opacity:.26;transform:scale(1.04)}
+    .bc-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,15,9,.4) 0%,rgba(26,15,9,.85) 100%)}
+    .bc-icon,.bc-title,.bc-text,.bc-tag{position:relative;z-index:1}
+
+    .info-card{border-radius:var(--r-lg);padding:36px}
+    .info-card h3{font-family:var(--disp);font-size:1.25rem;font-weight:400;margin-bottom:24px}
+    .hours-card{background:var(--bg);color:var(--cream);border-left:3px solid var(--gold)}
+    .hours-card h3{color:var(--gold-light)}
+    .h-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(201,164,110,.09);font-size:.86rem}
+    .h-row:last-child{border-bottom:none}
+    .h-day{color:var(--cream-dim)}
+    .h-time{color:var(--cream);font-weight:400}
+    .h-closed{color:var(--muted);font-style:italic}
+    .contact-card{background:var(--light-2)}
+    .contact-card h3{color:#3D1E14}
+    .c-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid rgba(90,64,53,.1);font-size:.88rem;color:#5A4035}
+    .c-item:last-child{border-bottom:none}
+    .c-item svg{width:16px;height:16px;color:var(--gold-dim);flex-shrink:0;margin-top:2px}
+    .c-item a:hover{color:var(--rose)}
+    .wa-contact{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:500;color:#25D366;border:1px solid rgba(37,211,102,.25);padding:9px 18px;border-radius:100px;transition:background var(--ease)}
+    .wa-contact:hover{background:rgba(37,211,102,.08)}
+    .wa-contact svg{width:15px;height:15px}
+
+    /* =========================================
+       SERVICES
+    ========================================= */
+    .sec-services{background:var(--bg);padding:120px 80px;position:relative;overflow:hidden}
+    .sec-services::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 15% 50%,rgba(201,164,110,.04) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 85% 20%,rgba(196,123,106,.04) 0%,transparent 60%);pointer-events:none}
+    .services-wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+    .sec-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:60px;gap:40px}
+    .sec-desc{font-size:.88rem;font-weight:300;color:var(--cream-dim);line-height:1.75;max-width:280px}
+
+    /* bento */
+    .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:48px}
+    .bc{background:var(--surface);border:1px solid rgba(201,164,110,.1);border-radius:var(--r-md);padding:30px;position:relative;overflow:hidden;transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease)}
+    .bc::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,164,110,.03) 0%,transparent 55%);pointer-events:none}
+    .bc:hover{transform:translateY(-5px);border-color:rgba(201,164,110,.38);box-shadow:0 24px 64px rgba(0,0,0,.35)}
+    .bc-xl{grid-column:span 3}
+    .bc-md{grid-column:span 2}
+    .bc-sm{grid-column:span 2}
+    .bc-icon{width:42px;height:42px;background:rgba(201,164,110,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+    .bc-icon svg{width:20px;height:20px;color:var(--gold)}
+    .bc-title{font-family:var(--disp);font-size:1.35rem;font-weight:400;color:var(--cream);margin-bottom:10px;line-height:1.2}
+    .bc-xl .bc-title{font-size:1.8rem}
+    .bc-text{font-size:.82rem;font-weight:300;color:var(--cream-dim);line-height:1.72}
+    .bc-tag{position:absolute;top:18px;right:18px;font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:rgba(201,164,110,.1);padding:4px 10px;border-radius:100px;border:1px solid rgba(201,164,110,.2)}
+
+    /* WA strip */
+    .wa-strip{background:var(--surface-2);border:1px solid rgba(201,164,110,.13);border-radius:var(--r-xl);padding:36px 44px;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+    .wa-head{display:flex;align-items:center;gap:14px;flex-shrink:0}
+    .wa-icon{width:42px;height:42px;background:rgba(37,211,102,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .wa-icon svg{width:20px;height:20px;color:#25D366}
+    .wa-head p{font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+    .wa-head h4{font-family:var(--disp);font-size:1.15rem;font-weight:400;color:var(--cream)}
+    .wa-pills{display:flex;flex-wrap:wrap;gap:9px;flex:1}
+    .wp{font-size:.76rem;color:var(--cream-dim);background:rgba(245,234,215,.04);border:1px solid rgba(245,234,215,.1);padding:7px 15px;border-radius:100px;transition:border-color var(--ease),color var(--ease)}
+    .wp:hover{border-color:rgba(37,211,102,.3);color:var(--cream)}
+    .wa-cta{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#25D366;border:1px solid rgba(37,211,102,.28);padding:12px 24px;border-radius:100px;transition:background var(--ease),border-color var(--ease);flex-shrink:0}
+    .wa-cta:hover{background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.5)}
+    .wa-cta svg{width:15px;height:15px}
+
+    /* =========================================
+       PREISE (PRICING)
+    ========================================= */
+    .sec-preise{background:var(--light);padding:120px 80px;position:relative}
+    .preise-wrap{max-width:1100px;margin:0 auto}
+
+    /* Tab nav */
+    .price-tabs{display:flex;gap:0;border-bottom:1px solid rgba(139,110,71,.2);margin-bottom:64px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .price-tab{font-family:var(--body);font-size:.75rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:#8B6E47;background:none;border:none;padding:14px 26px;cursor:pointer;position:relative;white-space:nowrap;transition:color var(--ease)}
+    .price-tab::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--rose);transform:scaleX(0);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+    .price-tab.active{color:var(--bg)}
+    .price-tab.active::after{transform:scaleX(1)}
+    .price-tab:hover{color:#5A4035}
+
+    /* Panels */
+    .price-panel{display:none}
+    .price-panel.active{display:block}
+
+    .price-cat-title{font-family:var(--disp);font-size:2rem;font-weight:300;color:var(--bg);margin-bottom:8px}
+    .price-cat-sub{font-size:.82rem;font-weight:300;color:#8B6E47;margin-bottom:40px;line-height:1.6}
+
+    .price-list{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(139,110,71,.15)}
+    .p-item{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid rgba(139,110,71,.12);transition:background var(--ease)}
+    .p-item:hover{padding-left:10px;padding-right:10px;margin:0 -10px;border-radius:8px;border-bottom-color:transparent;background:rgba(201,164,110,.07)}
+    .p-name{font-size:.93rem;font-weight:300;color:#3D2018;line-height:1.4;flex:1;padding-right:24px}
+    .p-name em{font-style:italic;font-size:.78rem;color:#8B6E47;display:block;margin-top:2px}
+    .p-price{font-family:var(--disp);font-size:1.25rem;font-weight:500;color:var(--rose-dim);white-space:nowrap}
+    .p-price.ab::before{content:'ab ';font-size:.7rem;font-weight:300;font-family:var(--body);text-transform:uppercase;letter-spacing:.06em;color:#8B6E47}
+
+    /* sub-group within panel */
+    .p-subgroup{margin-top:40px}
+    .p-subgroup-title{font-family:var(--disp);font-size:1.15rem;font-weight:400;color:var(--bg);padding-bottom:12px;border-bottom:1px solid rgba(139,110,71,.25);margin-bottom:0;display:flex;align-items:center;gap:12px}
+    .p-subgroup-title::before{content:'';width:18px;height:1px;background:var(--rose-dim)}
+
+    /* premium special badge */
+    .p-badge{font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-dim);border:1px solid rgba(196,123,106,.3);padding:3px 9px;border-radius:100px;margin-left:10px;vertical-align:middle}
+
+    /* Preise CTA */
+    .preise-cta{margin-top:56px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center}
+    .preise-cta p{font-size:.82rem;color:#8B6E47;font-weight:300}
+
+    /* =========================================
+       GALLERY
+    ========================================= */
+    .sec-gallery{background:var(--bg);padding:120px 80px;color:var(--cream)}
+    .gallery-wrap{max-width:1200px;margin:0 auto}
+    .gallery-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px;gap:40px}
+    .gallery-ig{display:flex;align-items:center;gap:8px;font-size:.76rem;color:var(--muted);transition:color var(--ease)}
+    .gallery-ig:hover{color:var(--gold)}
+    .gallery-ig svg{width:15px;height:15px}
+    .masonry{columns:3;column-gap:14px}
+    .m-item{break-inside:avoid;margin-bottom:14px;border-radius:var(--r-md);overflow:hidden;position:relative;cursor:none}
+    .m-photo{width:100%;display:block;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+    .m-item:hover .m-photo{transform:scale(1.05)}
+    .m-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,8,6,.78) 0%,transparent 55%);opacity:0;transition:opacity var(--ease);display:flex;align-items:flex-end;padding:20px}
+    .m-item:hover .m-overlay{opacity:1}
+    .m-label{font-family:var(--disp);font-size:1.05rem;font-weight:300;color:var(--cream);font-style:italic}
+
+    /* =========================================
+       CTA SECTION
+    ========================================= */
+    /* =========================================
+       BOOKING SECTION
+    ========================================= */
+    .sec-booking{background:var(--light);padding:120px 80px;position:relative}
+    .booking-wrap{max-width:1000px;margin:0 auto}
+    .booking-hd{text-align:center;margin-bottom:56px}
+    .booking-hd .label{justify-content:center}
+    .booking-hd .label::before{display:none}
+    .booking-hd .label::after{content:'';width:22px;height:1px;background:var(--gold-dim)}
+    .booking-hd h2{font-family:var(--disp);font-size:clamp(2.4rem,3.8vw,4rem);font-weight:300;color:var(--bg);line-height:1.1;margin-bottom:12px}
+    .booking-hd h2 em{font-style:italic;color:var(--rose)}
+    .booking-hd p{font-size:.9rem;font-weight:300;color:var(--muted);max-width:480px;margin:0 auto}
+    .booking-frame{background:#fff;border-radius:var(--r-xl);overflow:visible;box-shadow:0 8px 60px rgba(90,64,53,.1);border:1px solid rgba(201,164,110,.15)}
+    .booking-frame iframe{width:100%;border:none;display:block;min-height:1400px;border-radius:var(--r-xl)}
+    .booking-alt{margin-top:32px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+    .booking-alt p{font-size:.78rem;color:var(--muted)}
+    .booking-alt a{font-size:.78rem;color:var(--rose-dim);text-decoration:underline;text-underline-offset:3px}
+    .booking-alt a:hover{color:var(--rose)}
+
+    .sec-cta{background:var(--surface);padding:100px 80px;text-align:center;position:relative;overflow:hidden}
+    .cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(201,164,110,.07) 0%,transparent 70%);pointer-events:none}
+    .cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+    .cta-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+    .cta-eyebrow::before,.cta-eyebrow::after{content:'';width:22px;height:1px;background:var(--gold)}
+    .cta-hl{font-family:var(--disp);font-size:clamp(2.8rem,5vw,5.2rem);font-weight:300;color:var(--cream);line-height:1.06;margin-bottom:20px}
+    .cta-hl em{font-style:italic;color:var(--gold-light)}
+    .cta-sub{font-size:.93rem;font-weight:300;color:var(--cream-dim);line-height:1.75;margin-bottom:44px}
+    .cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:56px}
+    .cta-meta{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+    .cta-m{display:flex;align-items:center;gap:7px;font-size:.76rem;color:var(--muted)}
+    .cta-m svg{width:13px;height:13px;color:var(--gold-dim);flex-shrink:0}
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .footer{background:#080401;padding:80px;border-top:1px solid rgba(201,164,110,.08)}
+    .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:60px;max-width:1200px;margin:0 auto;padding-bottom:56px;border-bottom:1px solid rgba(201,164,110,.06)}
+    .f-logo{font-family:var(--disp);font-size:1.75rem;font-weight:500;color:var(--cream);margin-bottom:6px}
+    .f-tag{font-size:.76rem;font-weight:300;color:var(--muted);line-height:1.75;margin-bottom:28px;max-width:250px}
+    .f-social{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.12em;color:var(--gold-dim);border:1px solid rgba(201,164,110,.18);padding:8px 16px;border-radius:100px;transition:border-color var(--ease),color var(--ease)}
+    .f-social:hover{border-color:rgba(201,164,110,.45);color:var(--gold)}
+    .f-social svg{width:13px;height:13px}
+    .f-col h5{font-size:.62rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:22px}
+    .f-col ul{display:flex;flex-direction:column;gap:13px}
+    .f-col ul li{display:flex;align-items:flex-start;gap:9px;font-size:.83rem;font-weight:300;color:var(--muted)}
+    .f-col ul li svg{width:13px;height:13px;color:var(--gold-dim);flex-shrink:0;margin-top:3px}
+    .f-col ul li a:hover{color:var(--cream-dim)}
+    .footer-btm{display:flex;align-items:center;justify-content:space-between;padding-top:28px;max-width:1200px;margin:0 auto;gap:16px;flex-wrap:wrap}
+    .footer-btm p{font-size:.72rem;font-weight:300;color:#3A2A1E}
+    .footer-btm span{color:var(--gold-dim)}
+
+    /* =========================================
+       AGB SECTION
+    ========================================= */
+    .sec-agb{background:var(--bg);padding:100px 80px;position:relative}
+    .agb-wrap{max-width:1100px;margin:0 auto}
+    .agb-hd{text-align:center;margin-bottom:60px}
+    .agb-hd h2{font-family:var(--disp);font-size:clamp(2rem,3.2vw,3.4rem);font-weight:300;color:var(--cream);line-height:1.15;margin-bottom:8px}
+    .agb-hd h2 em{font-style:italic;color:var(--gold-light)}
+    .agb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+    .agb-card{background:var(--surface);border:1px solid rgba(201,164,110,.1);border-radius:var(--r-md);padding:28px 26px;position:relative;transition:border-color var(--ease)}
+    .agb-card:hover{border-color:rgba(201,164,110,.28)}
+    .agb-icon{width:34px;height:34px;border-radius:50%;background:rgba(201,164,110,.08);border:1px solid rgba(201,164,110,.15);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+    .agb-icon svg{width:15px;height:15px;color:var(--gold-dim)}
+    .agb-card h4{font-family:var(--disp);font-size:1rem;font-weight:400;color:var(--cream);margin-bottom:10px}
+    .agb-card p{font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.75}
+    .agb-note{text-align:center;padding:20px 32px;background:rgba(196,123,106,.06);border:1px solid rgba(196,123,106,.15);border-radius:var(--r-md);max-width:700px;margin:0 auto}
+    .agb-note p{font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.7}
+    .agb-note strong{color:var(--rose-dim);font-weight:500}
+    .agb-note-btns{display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+
+    /* floating WhatsApp button */
+    .wa-float{position:fixed;bottom:28px;right:28px;z-index:8000;display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:var(--body);font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 22px 13px 16px;border-radius:100px;box-shadow:0 4px 24px rgba(37,211,102,.35);transition:transform .2s,box-shadow .2s;cursor:none}
+    .wa-float:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(37,211,102,.45)}
+    .wa-float svg{width:20px;height:20px;flex-shrink:0}
+    @media(max-width:600px){.wa-float{bottom:20px;right:16px;padding:12px 18px 12px 14px}}
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+    @media(max-width:1100px){
+      .bento{grid-template-columns:repeat(4,1fr)}
+      .bc-xl{grid-column:span 2}
+      .bc-md,.bc-sm{grid-column:span 2}
+    }
+    @media(max-width:900px){
+      .nav{padding:16px 24px}
+      .nav.stuck{padding:12px 24px}
+      .nav-links,.nav-btn{display:none}
+      .nav-ham{display:flex}
+      .hero{grid-template-columns:1fr;min-height:auto;padding-top:90px}
+      .hero-content{padding:60px 24px 40px}
+      .hero-visual{height:55vw;min-height:260px;padding:0}
+      .hero-blob{width:240px;height:280px}
+      .hero-blob-2{width:200px;height:240px}
+      .hero-ring,.hero-ring-2,.float-card:last-of-type{display:none}
+      .hero-img-wrap{width:200px;height:260px}
+      .scroll-hint{display:none}
+      .sec-about,.sec-services,.sec-preise,.sec-gallery,.sec-booking,.sec-cta,.sec-agb{padding:80px 24px}
+      .agb-grid{grid-template-columns:1fr 1fr}
+      .about-cols{grid-template-columns:1fr}
+      .sec-hd{flex-direction:column;align-items:flex-start}
+      .bento{grid-template-columns:1fr 1fr;gap:10px}
+      .bc-xl{grid-column:span 2}
+      .bc-md,.bc-sm{grid-column:span 1}
+      .wa-strip{gap:20px;padding:24px}
+      .gallery-hd{flex-direction:column;align-items:flex-start}
+      .masonry{columns:2}
+      .footer{padding:60px 24px}
+      .footer-grid{grid-template-columns:1fr;gap:36px}
+    }
+    @media(max-width:600px){
+      .hero-headline{font-size:3.2rem}
+      .masonry{columns:1}
+      .agb-grid{grid-template-columns:1fr}
+      .bento{grid-template-columns:1fr}
+      .bc-xl,.bc-md,.bc-sm{grid-column:span 1}
+      .price-tabs{gap:0}
+      .price-tab{padding:12px 16px;font-size:.68rem}
+      .p-item{gap:12px}
+      .p-name{font-size:.85rem}
+      .p-price{font-size:1.1rem}
+    }
+
+    /* =========================================
+       MARQUEE STRIP
+    ========================================= */
+    .marquee-strip{background:var(--gold);overflow:hidden;padding:14px 0;position:relative;z-index:2}
+    .marquee-inner{display:flex;gap:0;width:max-content;animation:marquee-scroll 28s linear infinite}
+    .marquee-inner:hover{animation-play-state:paused}
+    .marquee-item{display:flex;align-items:center;gap:18px;padding:0 32px;font-family:var(--body);font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--bg);white-space:nowrap}
+    .marquee-dot{width:4px;height:4px;border-radius:50%;background:rgba(15,8,6,.35);flex-shrink:0}
+    @keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* =========================================
+       SPOTLIGHT CARDS
+    ========================================= */
+    .bc,.agb-card{--sx:50%;--sy:50%}
+    .bc::before,.agb-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(280px circle at var(--sx) var(--sy),rgba(201,164,110,.13) 0%,transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:0}
+    .bc:hover::before,.agb-card:hover::before{opacity:1}
+
+    /* =========================================
+       SPLIT-WORD TEXT REVEAL
+    ========================================= */
+    .split-reveal .word{display:inline-block;overflow:hidden;vertical-align:bottom}
+    .split-reveal .word-inner{display:inline-block;transform:translateY(110%);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+    .split-reveal.vis .word-inner{transform:translateY(0)}
+    .split-reveal .word-inner:nth-child(1){transition-delay:.05s}
+    .split-reveal .word-inner:nth-child(2){transition-delay:.13s}
+    .split-reveal .word-inner:nth-child(3){transition-delay:.21s}
+    .split-reveal .word-inner:nth-child(4){transition-delay:.29s}
+    .split-reveal .word-inner:nth-child(5){transition-delay:.37s}
+    .split-reveal .word-inner:nth-child(6){transition-delay:.45s}
+
+    /* =========================================
+       COUNTER + GOLD GRADIENT TEXT
+    ========================================= */
+    .fc-num{background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 50%,var(--gold-dim) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+    /* =========================================
+       HERO EYEBROW ANIMATED LINE
+    ========================================= */
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.65rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:eyebrow-in .8s .3s cubic-bezier(.16,1,.3,1) forwards}
+    .hero-eyebrow-line{width:0;height:1px;background:var(--gold);animation:line-grow .8s .6s cubic-bezier(.16,1,.3,1) forwards}
+    @keyframes eyebrow-in{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+    @keyframes line-grow{from{width:0}to{width:36px}}
+
+    /* =========================================
+       STAGGERED BENTO REVEAL
+    ========================================= */
+    .bc{opacity:0;transform:translateY(32px) scale(.98);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1),border-color var(--ease),box-shadow var(--ease)}
+    .bc.in-view{opacity:1;transform:none}
+    .bc:nth-child(1){transition-delay:.0s}
+    .bc:nth-child(2){transition-delay:.08s}
+    .bc:nth-child(3){transition-delay:.16s}
+    .bc:nth-child(4){transition-delay:.24s}
+    .bc:nth-child(5){transition-delay:.32s}
+    .bc:nth-child(6){transition-delay:.40s}
+
+    /* =========================================
+       CURSOR SCALE ON HOVER
+    ========================================= */
+    #cd.on-link{transform:translate(-50%,-50%) scale(3.5);background:transparent;border:1px solid var(--gold);transition:transform .2s,background .2s,border .2s}
+    #cg.on-link{opacity:.5}
+
+    /* =========================================
+       SECTION NUMBER ACCENT
+    ========================================= */
+    .sec-number{position:absolute;top:60px;right:80px;font-family:var(--disp);font-size:8rem;font-weight:600;color:rgba(201,164,110,.04);line-height:1;pointer-events:none;user-select:none;letter-spacing:-.04em}
+
+    /* =========================================
+       HOVER UNDERLINE NAV ENHANCED
+    ========================================= */
+    .nav-links a::after{height:1.5px;background:linear-gradient(to right,var(--gold),var(--gold-light))}
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cg"></div>
+<div id="cd"></div>
+
+<!-- ======================== NAV ======================== -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    Salon Bassma
+    <small>Damen Friseursalon · Erfurt</small>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#preise">Preise</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#termin" class="nav-btn">Termin buchen</a>
+  <button class="nav-ham" id="ham" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile overlay -->
+<div class="mob-overlay" id="mob">
+  <a href="#ueber-uns" class="ml">Über uns</a>
+  <a href="#leistungen" class="ml">Leistungen</a>
+  <a href="#preise" class="ml">Preise</a>
+  <a href="#galerie" class="ml">Galerie</a>
+  <a href="#kontakt" class="ml">Kontakt</a>
+  <a href="#termin" class="nav-btn ml">Termin buchen</a>
+</div>
+
+<!-- ======================== HERO ======================== -->
+<section class="hero">
+  <div class="hero-bg-glow"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      Damen Salon · Erfurt · seit 2018
+    </div>
+
+    <h1 class="hero-headline reveal d1">
+      Schönheit,
+      <em>die zu dir passt.</em>
+    </h1>
+
+    <p class="hero-sub reveal d2">
+      Professionelle Haar- und Kosmetikbehandlungen in entspannter Atmosphäre – individuell, modern und mit Liebe zum Detail.
+    </p>
+
+    <div class="hero-actions reveal d3">
+      <a href="#termin" class="btn btn-gold">
+        <span>Jetzt Termin buchen</span>
+      </a>
+      <a href="#preise" class="btn btn-outline">Preise ansehen</a>
+    </div>
+
+    <!-- Quick info strip -->
+    <div class="hero-quickinfo reveal d4">
+      <div class="qinfo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Mo–Fr <strong>09–19</strong> · Sa <strong>09–17</strong></span>
+      </div>
+      <div class="qinfo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <a href="tel:+4936126267722"><strong>+49 361 26267722</strong></a>
+      </div>
+      <div class="qinfo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Magdeburger Allee 117, <strong>Erfurt</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-ring"></div>
+    <div class="hero-ring-2"></div>
+    <div class="hero-blob"></div>
+    <div class="hero-blob-2"></div>
+    <div class="hero-img-wrap">
+      <img src="https://drive.google.com/thumbnail?id=1z1GVspsN3twrFh2xrB5cbUiZpTQeuAzd&sz=w800" alt="Salon Bassma – Damensalon Erfurt" loading="eager" />
+    </div>
+    <div class="float-card">
+      <span class="fc-num">Mo–Sa</span>
+      <span class="fc-lbl">Für dich da</span>
+    </div>
+    <div class="float-card">
+      <span class="fc-num" data-count="15" data-suffix="+">0+</span>
+      <span class="fc-lbl">Leistungen</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <!-- SVG wave -->
+  <svg class="wave-divider" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 80 Q360 0 720 40 Q1080 80 1440 20 L1440 80 Z" fill="#F7F1EA"/>
+  </svg>
+</section>
+
+<!-- ======================== MARQUEE ======================== -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Haare<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Make-up<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Wimpernverlängerung<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Braut-Styling<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Gesichtsbehandlung<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Augenbrauen<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Färben<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hochsteckfrisur<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Haare<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Make-up<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Wimpernverlängerung<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Braut-Styling<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Gesichtsbehandlung<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Augenbrauen<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Färben<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hochsteckfrisur<span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ======================== ÜBER UNS ======================== -->
+<section class="sec-about" id="ueber-uns" style="position:relative">
+  <span class="sec-number">01</span>
+  <div class="about-wrap">
+    <p class="label dark reveal">Über uns</p>
+    <h2 class="about-headline reveal d1">
+      Mehr als ein Salon –<br>ein Ort zum <em>Wohlfühlen.</em>
+    </h2>
+    <p class="about-body reveal d2">
+      Im Salon Bassma stehst du im Mittelpunkt. Ob trendiger Haarschnitt, strahlende Farbe oder glamouröses Make-up für deinen großen Tag – wir nehmen uns Zeit für dich und deine Wünsche. Komm vorbei und erlebe eine Auszeit vom Alltag mitten in Erfurt.
+    </p>
+
+    <div class="about-pills reveal d2">
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Exklusiv für Damen
+      </span>
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Individuelle Beratung
+      </span>
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Flexible Zeiten
+      </span>
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Zentral in Erfurt
+      </span>
+    </div>
+
+    <div class="team-grid reveal d1">
+      <div class="team-card">
+        <div class="about-photo">
+          <img src="https://drive.google.com/thumbnail?id=1B7aIfD02-7D7vFJ2CJbtcmJguQk_7gTa&sz=w800" alt="Team Salon Bassma" loading="lazy" />
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="about-photo">
+          <img src="https://drive.google.com/thumbnail?id=1Oyw43-cxWnygj9nqkHbSUhEdUdGPE2cY&sz=w800" alt="Team Salon Bassma" loading="lazy" />
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="about-photo">
+          <img src="https://drive.google.com/thumbnail?id=1alVKvIxhuoSpiihRtPknW56L5alg6jus&sz=w800" alt="Team Salon Bassma" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="about-cols" id="kontakt">
+      <div class="info-card hours-card reveal d1">
+        <h3>Öffnungszeiten</h3>
+        <div class="h-row"><span class="h-day">Montag – Freitag</span><span></span></div>
+        <div class="h-row"><span class="h-day">Friseur</span><span class="h-time">09:00 – 19:00 Uhr</span></div>
+        <div class="h-row"><span class="h-day">Kosmetik</span><span class="h-time">10:00 – 16:00 Uhr</span></div>
+        <div class="h-row"><span class="h-day">Samstag</span><span></span></div>
+        <div class="h-row"><span class="h-day">Friseur</span><span class="h-time">09:00 – 17:00 Uhr</span></div>
+        <div class="h-row"><span class="h-day">Kosmetik</span><span class="h-time">09:00 – 17:00 Uhr</span></div>
+        <div class="h-row"><span class="h-day">Sonntag</span><span class="h-closed">Geschlossen</span></div>
+      </div>
+      <div class="info-card contact-card reveal d2">
+        <h3>Kontakt & Anfahrt</h3>
+        <div class="c-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+4936126267722">+49 361 26267722</a>
+        </div>
+        <div class="c-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Magdeburger Allee 117<br>99086 Erfurt</span>
+        </div>
+        <div class="c-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <a href="https://instagram.com/salon.bassma" target="_blank" rel="noopener">@salon.bassma</a>
+        </div>
+        <div class="c-item" style="padding-top:16px">
+          <a href="https://wa.me/4915165241268" class="wa-contact" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            WhatsApp schreiben
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== LEISTUNGEN ======================== -->
+<section class="sec-services" id="leistungen" style="position:relative">
+  <span class="sec-number">02</span>
+  <div class="services-wrap">
+    <div class="sec-hd">
+      <div>
+        <p class="label reveal">Leistungen</p>
+        <h2 class="hdl reveal d1" style="font-size:clamp(2.4rem,3.8vw,4rem)">
+          Was wir für dich<br><em>tun können.</em>
+        </h2>
+      </div>
+      <p class="sec-desc reveal d2">Von Haarschnitt bis Braut-Styling – alles aus einer Hand, nur für Damen.</p>
+    </div>
+
+    <div class="bento">
+      <div class="bc bc-xl reveal d1">
+        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1sYuGE8DE2vrgQhVuyVK3saJL3-5ph5Zw&sz=w800" alt="" loading="lazy"/></div>
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M18 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M9 9h6m-3 3v9"/></svg>
+        </div>
+        <h3 class="bc-title">Haarschnitt & Styling</h3>
+        <p class="bc-text">Präziser Schnitt, angepasst an deine Haarstruktur und deinen Lifestyle. Elegante Hochsteckfrisuren für besondere Anlässe. Ab 15 €.</p>
+      </div>
+      <div class="bc bc-xl reveal d2">
+        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1HO1UVJZIVdLowxh3LPUeAnfhXL8tujzW&sz=w800" alt="" loading="lazy"/></div>
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="bc-title">Färben & Strähnen</h3>
+        <p class="bc-text">Lebendige Farben, die zu dir passen – von natürlichen Tönen bis zu ausdrucksstarken Highlights. Komplett oder Ansatz. Ab 30 €.</p>
+        <span class="bc-tag">inkl. WhatsApp</span>
+      </div>
+      <div class="bc bc-md reveal d3">
+        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1q2p4b_S7GAZNA7afpzO_Wh1IrGtdTvKY&sz=w600" alt="" loading="lazy"/></div>
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3 class="bc-title">Make-up</h3>
+        <p class="bc-text">Tages-, Abend- & Braut Make-up. Glamourös und langanhaltend. Ab 40 €.</p>
+      </div>
+      <div class="bc bc-md reveal d4">
+        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1KAc3rEZAIFn_uOrs5p6vRVn0kOGC6940&sz=w600" alt="" loading="lazy"/></div>
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 class="bc-title">Gesichts&shy;behandlung</h3>
+        <p class="bc-text">Hydrafacial, OxyGeneo, Microneedling, Algenpeeling & mehr. Ab 50 €.</p>
+        <span class="bc-tag">Kosmetik</span>
+      </div>
+      <div class="bc bc-sm reveal d3">
+        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1v9fseSY7iwDJnhi293W2El7GEr72Z0pa&sz=w600" alt="" loading="lazy"/></div>
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3 class="bc-title">Augen&shy;brauen</h3>
+        <p class="bc-text">Zupfen per Faden, Färben & Permanent Make-up. Ab 7 €.</p>
+      </div>
+      <div class="bc bc-sm reveal d4">
+        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1yVY5eH_cim6LWDmjJmpZJIhKd9y44dCn&sz=w600" alt="" loading="lazy"/></div>
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s4.5-7 10-7 10 7 10 7-4.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg>
+        </div>
+        <h3 class="bc-title">Wimpern</h3>
+        <p class="bc-text">Verlängerung (1:1, Natur, Klassik, Volumen) & Lifting. Ab 60 €.</p>
+      </div>
+    </div>
+
+    <!-- WhatsApp strip -->
+    <div class="wa-strip reveal">
+      <div class="wa-head">
+        <div class="wa-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </div>
+        <div>
+          <p>Nur per</p>
+          <h4>WhatsApp buchbar</h4>
+        </div>
+      </div>
+      <div class="wa-pills">
+        <span class="wp">Braut Make-up</span>
+        <span class="wp">Brautfrisur</span>
+        <span class="wp">Haare färben</span>
+        <span class="wp">Strähnchen</span>
+        <span class="wp">Haarverlängerung</span>
+        <span class="wp">Hydro Facial</span>
+        <span class="wp">CO2 Behandlung</span>
+        <span class="wp">Permanent Make-up</span>
+        <span class="wp">Verlobungs-Styling</span>
+      </div>
+      <a href="https://wa.me/4915165241268" class="wa-cta" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        Jetzt schreiben
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== PREISE ======================== -->
+<section class="sec-preise" id="preise" style="position:relative">
+  <span class="sec-number">03</span>
+  <div class="preise-wrap">
+    <p class="label dark reveal">Preiseliste</p>
+    <h2 class="about-headline reveal d1" style="font-size:clamp(2.4rem,3.8vw,4rem)">
+      Transparente Preise,<br><em>klare Leistung.</em>
+    </h2>
+    <p class="about-body reveal d2" style="margin-bottom:40px">
+      Alle Preise auf einen Blick – wähle einfach eine Kategorie. Bei Fragen oder für Sonderleistungen stehen wir dir gerne per WhatsApp zur Verfügung.
+    </p>
+
+    <!-- Tabs -->
+    <div class="price-tabs reveal d3" role="tablist">
+      <button class="price-tab active" data-tab="haare">Haare</button>
+      <button class="price-tab" data-tab="makeup">Make-up & Styling</button>
+      <button class="price-tab" data-tab="wimpern">Wimpern & Augenbrauen</button>
+      <button class="price-tab" data-tab="gesicht">Gesichts&shy;behandlung</button>
+    </div>
+
+    <!-- HAARE -->
+    <div class="price-panel active" id="tab-haare">
+      <h3 class="price-cat-title">Friseur & Haare</h3>
+      <p class="price-cat-sub">Alle Haardienstleistungen direkt im Salon buchbar · Mo–Fr 09–19 · Sa 09–17 Uhr</p>
+      <div class="price-list">
+        <div class="p-item"><span class="p-name">Trockenschnitt</span><span class="p-price ab">15 €</span></div>
+        <div class="p-item"><span class="p-name">Waschen / Schneiden / Föhnen</span><span class="p-price ab">31 €</span></div>
+        <div class="p-item"><span class="p-name">Waschen / Schneiden / Föhnen <em>Lange Haare</em></span><span class="p-price ab">45 €</span></div>
+        <div class="p-item"><span class="p-name">Komplett Färben</span><span class="p-price ab">40 €</span></div>
+        <div class="p-item"><span class="p-name">Ansatz Färben</span><span class="p-price ab">30 €</span></div>
+        <div class="p-item"><span class="p-name">Komplett Strähnen</span><span class="p-price ab">50 €</span></div>
+        <div class="p-item"><span class="p-name">Ansatz Strähnen</span><span class="p-price ab">50 €</span></div>
+        <div class="p-item"><span class="p-name">Haare Protein<em>Pflegebehandlung für mehr Glanz & Stärke</em></span><span class="p-price ab">100 €</span></div>
+        <div class="p-item"><span class="p-name">Hochsteckfrisur</span><span class="p-price">75 €</span></div>
+      </div>
+    </div>
+
+    <!-- MAKE-UP -->
+    <div class="price-panel" id="tab-makeup">
+      <h3 class="price-cat-title">Make-up & Styling</h3>
+      <p class="price-cat-sub">Tages-Look bis Hochzeitsglam · Braut-Pakete bitte per WhatsApp anfragen</p>
+      <div class="price-list">
+        <div class="p-item"><span class="p-name">Tages Make-up</span><span class="p-price">40 €</span></div>
+        <div class="p-item"><span class="p-name">Abend Make-up</span><span class="p-price">60 €</span></div>
+        <div class="p-item">
+          <span class="p-name">
+            Verlobungs-Paket <span class="p-badge">WhatsApp</span>
+            <em>Make-up & Hochsteckfrisur / Haare</em>
+          </span>
+          <span class="p-price">300 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">
+            Braut-Paket <span class="p-badge">WhatsApp</span>
+            <em>Make-up & Haare</em>
+          </span>
+          <span class="p-price">350 €</span>
+        </div>
+        <div class="p-item">
+          <span class="p-name">
+            Permanent Make-up
+            <em>Zwei Behandlungen inklusive</em>
+          </span>
+          <span class="p-price">350 €</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WIMPERN & AUGENBRAUEN -->
+    <div class="price-panel" id="tab-wimpern">
+      <h3 class="price-cat-title">Wimpern & Augenbrauen</h3>
+      <p class="price-cat-sub">Für einen ausdrucksstarken Blick – präzise und professionell</p>
+      <div class="price-list">
+        <div class="p-item"><span class="p-name">Augenbrauen Fadentechnik</span><span class="p-price">10 €</span></div>
+        <div class="p-item"><span class="p-name">Gesichtshaare entfernen <em>Wax oder Faden</em></span><span class="p-price">15 €</span></div>
+        <div class="p-item"><span class="p-name">Augenbrauen / Wimpern Färben</span><span class="p-price">7 €</span></div>
+        <div class="p-item"><span class="p-name">Wimpernlifting inkl. Farbe</span><span class="p-price">55 €</span></div>
+        <div class="p-item"><span class="p-name">Augenbrauenlifting <em>inkl. Zupfen & Färben</em></span><span class="p-price">55 €</span></div>
+        <div class="p-item"><span class="p-name">Augenbrauen zupfen & färben</span><span class="p-price">17 €</span></div>
+      </div>
+
+      <div class="p-subgroup">
+        <h4 class="p-subgroup-title">Wimpernverlängerung</h4>
+        <div class="price-list">
+          <div class="p-item"><span class="p-name">1:1 Technik</span><span class="p-price">60 €</span></div>
+          <div class="p-item"><span class="p-name">Natur</span><span class="p-price">70 €</span></div>
+          <div class="p-item"><span class="p-name">Klassik</span><span class="p-price">80 €</span></div>
+          <div class="p-item"><span class="p-name">Volumen</span><span class="p-price">90 €</span></div>
+          <div class="p-item"><span class="p-name">Für allergische Augenwimpern<em>Hypoallergener Kleber auf Anfrage</em></span><span class="p-price">100 €</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GESICHT -->
+    <div class="price-panel" id="tab-gesicht">
+      <h3 class="price-cat-title">Gesichtsbehandlung & Kosmetik</h3>
+      <p class="price-cat-sub">Professionelle Kosmetik · Mo–Fr 10–16 · Sa 09–17 Uhr</p>
+      <div class="price-list">
+        <div class="p-item"><span class="p-name">Klassische Behandlung</span><span class="p-price">50 €</span></div>
+        <div class="p-item"><span class="p-name">Hydrafacial Behandlung</span><span class="p-price">100 €</span></div>
+        <div class="p-item"><span class="p-name">Microneedling Behandlung</span><span class="p-price">90 €</span></div>
+        <div class="p-item"><span class="p-name">Algenpeeling</span><span class="p-price">170 €</span></div>
+      </div>
+
+      <div class="p-subgroup">
+        <h4 class="p-subgroup-title">OxyGeneo Behandlung</h4>
+        <div class="price-list">
+          <div class="p-item"><span class="p-name">Gesicht</span><span class="p-price">90 €</span></div>
+          <div class="p-item"><span class="p-name">Gesicht und Hals</span><span class="p-price">130 €</span></div>
+          <div class="p-item"><span class="p-name">Gesicht, Hals und Dekolleté</span><span class="p-price">150 €</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA below prices -->
+    <div class="preise-cta reveal">
+      <p>Fragen zu Preisen oder Kombi-Leistungen? Wir antworten schnell per WhatsApp.</p>
+      <a href="https://wa.me/4915165241268" class="btn btn-wa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        <span>Jetzt anfragen</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== GALERIE ======================== -->
+<section class="sec-gallery" id="galerie">
+  <div class="gallery-wrap">
+    <div class="gallery-hd">
+      <div>
+        <p class="label reveal">Unsere Arbeiten</p>
+        <h2 class="hdl reveal d1" style="font-size:clamp(2.4rem,3.8vw,4rem)">
+          Lass dich<br><em>inspirieren.</em>
+        </h2>
+      </div>
+      <a href="https://instagram.com/salon.bassma" class="gallery-ig reveal d2" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @salon.bassma
+      </a>
+    </div>
+
+    <div class="masonry reveal">
+      <div class="m-item">
+        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1tHtiAjFF8-44jhi1bBXqGpDCNt5Wexpz&sz=w800" alt="Brautfrisur" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Brautfrisur</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1sYuGE8DE2vrgQhVuyVK3saJL3-5ph5Zw&sz=w800" alt="Gefärbtes Haar" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Gefärbtes Haar</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1q2p4b_S7GAZNA7afpzO_Wh1IrGtdTvKY&sz=w800" alt="Make-up" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Make-up</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1HO1UVJZIVdLowxh3LPUeAnfhXL8tujzW&sz=w800" alt="Blondes Haar" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Blondes Haar</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1yVY5eH_cim6LWDmjJmpZJIhKd9y44dCn&sz=w800" alt="Nails" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Nails</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="https://drive.google.com/thumbnail?id=17MsQgyA0O-cZMlMq0X8iLTfMeUX_uUEz&sz=w800" alt="Weißes Haar" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Weißes Haar</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1KAc3rEZAIFn_uOrs5p6vRVn0kOGC6940&sz=w800" alt="Gesichtsbehandlung" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Gesichtsbehandlung</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1EZJr87ohRD4t-KhK2nB4dF47gswMWSyo&sz=w800" alt="Strähnchen" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Strähnchen</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1WD09pxt5w2vrtPrJsLB5cgXj3cTUYrI1&sz=w800" alt="Haarschnitt" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Haarschnitt</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="salon-updo-frisur.jpeg" alt="Hochsteckfrisur" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Hochsteckfrisur</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="salon-makeup-frisur.jpeg" alt="Make-up & Frisur" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Make-up & Frisur</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="salon-blond-bob.jpeg" alt="Blond Bob" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Blond Bob</span></div>
+      </div>
+      <div class="m-item">
+        <img class="m-photo" src="salon-makeup-look.jpeg" alt="Make-up Look" loading="lazy" />
+        <div class="m-overlay"><span class="m-label">Make-up Look</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== TERMIN BUCHEN ======================== -->
+<section class="sec-booking" id="termin">
+  <div class="booking-wrap">
+    <div class="booking-hd reveal">
+      <p class="label dark">Online Buchung</p>
+      <h2>Deinen Termin<br><em>jetzt direkt buchen.</em></h2>
+      <p>Wähle einfach deine gewünschte Leistung und einen freien Termin – schnell, einfach und ohne Anruf.</p>
+    </div>
+    <div class="booking-frame reveal d1">
+      <iframe src="https://api.leadconnectorhq.com/widget/service-menu/69ba952939829d6f122bd916" style="width:100%;border:none;overflow:hidden;min-height:700px;" scrolling="no" id="69ba952939829d6f122bd916_1774986237264"></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+    </div>
+    <div class="booking-alt reveal d2">
+      <p>Lieber persönlich anfragen?</p>
+      <a href="https://wa.me/4915165241268" target="_blank" rel="noopener">Auf WhatsApp schreiben</a>
+      <span style="color:var(--muted);font-size:.7rem">·</span>
+      <a href="tel:+4936126267722">+49 361 26267722</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== CTA ======================== -->
+<section class="sec-cta">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <p class="cta-eyebrow reveal">Termin buchen</p>
+    <h2 class="cta-hl reveal d1">
+      Finde deinen<br><em>perfekten Moment.</em>
+    </h2>
+    <p class="cta-sub reveal d2">
+      Ruf uns an oder schreib direkt auf WhatsApp – wir finden den passenden Termin für dich.
+    </p>
+    <div class="cta-btns reveal d3">
+      <a href="https://wa.me/4915165241268" class="btn btn-wa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <a href="tel:+4936126267722" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Anrufen
+      </a>
+    </div>
+    <div class="cta-meta reveal d4">
+      <span class="cta-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Mo–Fr 09–19 · Sa 09–17</span>
+      <span class="cta-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Magdeburger Allee 117, Erfurt</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== AGB ======================== -->
+<section class="sec-agb" id="agb">
+  <div class="agb-wrap">
+    <div class="agb-hd reveal">
+      <p class="label" style="justify-content:center;color:var(--gold-dim)">Buchungshinweise</p>
+      <h2>Unsere <em>AGB</em></h2>
+    </div>
+    <div class="agb-grid">
+      <div class="agb-card reveal d1">
+        <div class="agb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h4>Anzahlung</h4>
+        <p>Bei jeder Terminreservierung erforderlich & nicht erstattungsfähig.</p>
+      </div>
+      <div class="agb-card reveal d2">
+        <div class="agb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+        </div>
+        <h4>Absage & Nichterscheinen</h4>
+        <p>Bei Absage oder Nichterscheinen bleibt die Anzahlung als Ausfallgebühr.</p>
+      </div>
+      <div class="agb-card reveal d3">
+        <div class="agb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <h4>Terminverschiebung</h4>
+        <p>Nur nach Absprache und je nach Verfügbarkeit möglich.</p>
+      </div>
+      <div class="agb-card reveal d1">
+        <div class="agb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4>Verspätung</h4>
+        <p>Über 30 Minuten = Termin kann gekürzt oder abgesagt werden.</p>
+      </div>
+      <div class="agb-card reveal d2">
+        <div class="agb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+        </div>
+        <h4>Reklamation</h4>
+        <p>Innerhalb von 7 Tagen nach dem Termin melden.</p>
+      </div>
+      <div class="agb-card reveal d3">
+        <div class="agb-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h4>Buchungsbestätigung</h4>
+        <p>Mit der Buchung akzeptiert die Kundin unsere AGB.</p>
+      </div>
+    </div>
+    <div class="agb-note reveal">
+      <p><strong>Hinweis:</strong> Bitte erscheine pünktlich zu deinem Termin. Für eine Absage ruf uns bitte direkt an.</p>
+      <div class="agb-note-btns">
+        <a href="tel:+4936126267722" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Termin absagen – Anrufen</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <p class="f-logo">Salon Bassma</p>
+      <p class="f-tag">Professionelle Haar- und Kosmetikbehandlungen in entspannter Atmosphäre. Ihr exklusiver Damensalon in Erfurt.</p>
+      <a href="https://instagram.com/salon.bassma" class="f-social" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @salon.bassma
+      </a>
+    </div>
+    <div class="f-col">
+      <h5>Kontakt</h5>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+4936126267722">+49 361 26267722</a></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Magdeburger Allee 117<br>99086 Erfurt</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Mo–Fr · Friseur 09–19 / Kosmetik 10–16<br>Samstag · Friseur & Kosmetik 09–17 Uhr</span></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#agb">AGB</a></li>
+        <li><a href="https://wa.me/4915165241268" target="_blank" rel="noopener" style="color:#25D366">Termin buchen</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p>© 2025 <span>Salon Bassma</span>. Damen Friseursalon Erfurt. Alle Rechte vorbehalten.</p>
+    <p>Made with care</p>
+  </div>
+</footer>
+
+<!-- ======================== SCRIPT ======================== -->
+<script>
+  /* --- Cursor --- */
+  const cg = document.getElementById('cg');
+  const cd = document.getElementById('cd');
+  let mx=0,my=0,gx=0,gy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
+  document.addEventListener('mouseleave',()=>{cg.style.opacity='0';cd.style.opacity='0'});
+  document.addEventListener('mouseenter',()=>{cg.style.opacity='1';cd.style.opacity='1'});
+  (function loop(){gx+=(mx-gx)*.07;gy+=(my-gy)*.07;cg.style.left=gx+'px';cg.style.top=gy+'px';requestAnimationFrame(loop)})();
+
+  /* --- Sticky nav --- */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>60),{passive:true});
+
+  /* --- Mobile menu --- */
+  const ham=document.getElementById('ham'), mob=document.getElementById('mob');
+  ham.addEventListener('click',()=>{
+    const o=ham.classList.toggle('open');
+    mob.classList.toggle('open',o);
+    document.body.classList.toggle('no-scroll',o);
+  });
+  mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    ham.classList.remove('open');mob.classList.remove('open');document.body.classList.remove('no-scroll');
+  }));
+
+  /* --- Reveal on scroll --- */
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}});
+  },{threshold:.1,rootMargin:'0px 0px -36px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  /* --- Price tabs --- */
+  document.querySelectorAll('.price-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.price-tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.price-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* --- Magnetic buttons --- */
+  document.querySelectorAll('.btn-gold,.btn-wa,.nav-btn').forEach(btn=>{
+    btn.addEventListener('mousemove',function(e){
+      const r=this.getBoundingClientRect();
+      const dx=(e.clientX-r.left-r.width/2)*.22;
+      const dy=(e.clientY-r.top-r.height/2)*.22;
+      this.style.transform=`translate(${dx}px,${dy}px)`;
+    });
+    btn.addEventListener('mouseleave',function(){this.style.transform='';});
+  });
+
+  /* --- Smooth scroll offset --- */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const t=document.querySelector(this.getAttribute('href'));
+      if(!t)return;
+      e.preventDefault();
+      window.scrollTo({top:t.getBoundingClientRect().top+scrollY-nav.offsetHeight-16,behavior:'smooth'});
+    });
+  });
+
+  /* --- Hero parallax (desktop) --- */
+  if(window.innerWidth>900){
+    const b1=document.querySelector('.hero-blob');
+    const b2=document.querySelector('.hero-blob-2');
+    const hc=document.querySelector('.hero-content');
+    window.addEventListener('scroll',()=>{
+      const y=scrollY;
+      if(b1)b1.style.transform=`translateY(${y*.12}px)`;
+      if(b2)b2.style.transform=`translateY(${y*.07}px)`;
+      if(hc)hc.style.transform=`translateY(${y*.04}px)`;
+    },{passive:true});
+  }
+
+  /* --- Spotlight glow on cards --- */
+  document.querySelectorAll('.bc,.agb-card').forEach(card=>{
+    card.addEventListener('mousemove',function(e){
+      const r=this.getBoundingClientRect();
+      this.style.setProperty('--sx',(e.clientX-r.left)+'px');
+      this.style.setProperty('--sy',(e.clientY-r.top)+'px');
+    });
+  });
+
+  /* --- Staggered bento reveal --- */
+  const bentoIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in-view');bentoIO.unobserve(e.target)}
+    });
+  },{threshold:.08});
+  document.querySelectorAll('.bc').forEach(el=>bentoIO.observe(el));
+
+  /* --- Cursor scale on interactive elements --- */
+  document.querySelectorAll('a,button,.bc,.agb-card,.m-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cd.classList.add('on-link');cg.classList.add('on-link')});
+    el.addEventListener('mouseleave',()=>{cd.classList.remove('on-link');cg.classList.remove('on-link')});
+  });
+
+  /* --- Counter animation for float cards --- */
+  function animateCount(el,target,duration=1800){
+    const start=performance.now();
+    const update=now=>{
+      const p=Math.min((now-start)/duration,1);
+      const ease=1-Math.pow(1-p,3);
+      el.textContent=Math.round(ease*target)+(el.dataset.suffix||'');
+      if(p<1)requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+  const counterIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const num=e.target;
+        const val=parseInt(num.dataset.count,10);
+        if(!isNaN(val)){animateCount(num,val);counterIO.unobserve(num)}
+      }
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>counterIO.observe(el));
+
+  /* --- Text scramble on section headlines --- */
+  const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  function scramble(el){
+    const original=el.dataset.scramble||el.textContent;
+    el.dataset.scramble=original;
+    let frame=0,total=24;
+    const run=()=>{
+      el.textContent=original.split('').map((c,i)=>{
+        if(c===' ')return ' ';
+        if(frame/total>i/original.length)return c;
+        return chars[Math.floor(Math.random()*chars.length)];
+      }).join('');
+      if(frame++<total)requestAnimationFrame(run);
+      else el.textContent=original;
+    };
+    requestAnimationFrame(run);
+  }
+  const scrambleIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        scramble(e.target);
+        scrambleIO.unobserve(e.target);
+      }
+    });
+  },{threshold:.6});
+  document.querySelectorAll('.label').forEach(el=>scrambleIO.observe(el));
+
+  /* --- Stronger magnetic on all buttons --- */
+  document.querySelectorAll('.btn,.nav-btn,.wa-float,.wa-cta,.wa-contact').forEach(btn=>{
+    btn.addEventListener('mousemove',function(e){
+      const r=this.getBoundingClientRect();
+      const dx=(e.clientX-r.left-r.width/2)*.3;
+      const dy=(e.clientY-r.top-r.height/2)*.3;
+      this.style.transform=`translate(${dx}px,${dy}px)`;
+    });
+    btn.addEventListener('mouseleave',function(){this.style.transform='';});
+  });
+</script>
+<script type="text/javascript">"use strict";(()=>{var Ee="___",Ne="ghl_embed",ue="UPS",De="__ghl_iframe_resizer_initialized__",ke="__ghl_widget_initialized__",Oe="__ghl_global_style_injected__",oe={cleanUp:"__ghl_is_cleaning_up__",globalState:"__GHL_EMBED_STATE__"},Y={INITIALIZED_ATTRIBUTE:"data-iframe-resizer-initialized"},ae={UNIQUE_ID_ATTRIBUTE:"data-unique-id-mapped",HIDE_IFRAME_ATTRIBUTE:"data-initial-iframe-hidden"},xe=e=>`embedded_iframe_${e}`;var tn=e=>{var n,o;let t=e.src;return((n=t==null?void 0:t.includes)==null?void 0:n.call(t,"/quiz"))||((o=t==null?void 0:t.includes)==null?void 0:o.call(t,"/survey"))},Ue=e=>{var n;let t=e.src;return((n=t==null?void 0:t.includes)==null?void 0:n.call(t,"/form"))||tn(e)},Me=e=>{var n,o,r,s;let t=e.src;return Ue(e)||((n=t==null?void 0:t.includes)==null?void 0:n.call(t,"/booking"))||((o=t==null?void 0:t.includes)==null?void 0:o.call(t,"/group"))||((r=t==null?void 0:t.includes)==null?void 0:r.call(t,"/rentals"))||((s=t==null?void 0:t.includes)==null?void 0:s.call(t,"/service-menu"))||!1};function nn(){"use strict";if(window[De])return;window[De]=!0;function e(m,f,w){"addEventListener"in window?m.addEventListener(f,w,!1):"attachEvent"in window&&m.attachEvent("on"+f,w)}function t(){var m,f=["moz","webkit","o","ms"];for(m=0;m<f.length&&!j;m+=1)j=window[f[m]+"RequestAnimationFrame"];j||r(" RequestAnimationFrame not supported")}function n(){var m="Host page";return window.top!==window.self&&(m=window.parentIFrame?window.parentIFrame.getId():"Nested host page"),m}function o(m){return ee+"["+n()+"]"+m}function r(m){i.log&&window.console}function s(m){window.console}function p(m){function f(){function l(){var h;y(g),d(),(h=i==null?void 0:i.resizedCallback)==null||h.call(i,g)}G("Height"),G("Width"),M(l,g,"resetPage")}function w(l){var h=l.id;r(" Removing iFrame: "+h),l.parentNode.removeChild(l),i.closedCallback(h),r(" --")}function H(){var l=z.substr(P).split(":");return{iframe:document.getElementById(l[0]),id:l[0],height:l[1],width:l[2],type:l[3]}}function G(l){var h=Number(i["max"+l]),b=Number(i["min"+l]),L=l.toLowerCase(),R=Number(g[L]);if(b>h)throw new Error("Value for min"+l+" can not be greater than max"+l);r(" Checking "+L+" is in range "+b+"-"+h),b>R&&(R=b,r(" Set "+L+" to min value")),R>h&&(R=h,r(" Set "+L+" to max value")),g[L]=""+R}function ie(){var l=g.iframe.src;!l&&g.iframe.getAttribute("data-src")&&(l=g.iframe.getAttribute("data-src"));var h=m.origin,b=l.split("/").slice(0,3).join("/");if(i.checkOrigin&&(r(" Checking connection is from: "+b),""+h!="null"&&h!==b))throw new Error("Unexpected message received from: "+h+" for "+g.iframe.id+". Message was: "+m.data+". This error can be disabled by adding the checkOrigin: false option.");return!0}function C(){return ee===(""+z).substr(0,P)}function re(){var l=g.type in{true:1,false:1};return l&&r(" Ignoring init message from meta parent page"),l}function S(l){return z.substr(z.indexOf(":")+Re+l)}function N(l){r(" MessageCallback passed: {iframe: "+g.iframe.id+", message: "+l+"}"),i.messageCallback({iframe:g.iframe,message:JSON.parse(l)}),r(" --")}function pe(){if(g.iframe===null)throw new Error("iFrame ("+g.id+") does not exist on "+V);return!0}function fe(l){var h=l.getBoundingClientRect();return x(),{x:parseInt(h.left,10)+parseInt(c.x,10),y:parseInt(h.top,10)+parseInt(c.y,10)}}function O(l){function h(){c=R,B(),r(" --")}function b(){return{x:Number(g.width)+L.x,y:Number(g.height)+L.y}}var L=l?fe(g.iframe):{x:0,y:0},R=b();r(" Reposition requested from iFrame (offset x:"+L.x+" y:"+L.y+")"),window.top!==window.self?window.parentIFrame?l?parentIFrame.scrollToOffset(R.x,R.y):parentIFrame.scrollTo(g.width,g.height):s(" Unable to scroll to requested position, window.parentIFrame not found"):h()}function B(){i.scrollCallback(c)!==!1&&d()}function $(l){function h(He){var _=fe(He);r(" Moving to in page link (#"+b+") at x: "+_.x+" y: "+_.y),c={x:_.x,y:_.y},B(),r(" --")}var b=l.split("#")[1]||"",L=decodeURIComponent(b),R=document.getElementById(L)||document.getElementsByName(L)[0];window.top!==window.self?window.parentIFrame?parentIFrame.moveToAnchor(b):r(" In page link #"+b+" not found and window.parentIFrame not found"):R?h(R):r(" In page link #"+b+" not found")}function U(){var l,h;switch(g.type){case"close":w(g.iframe),(l=i==null?void 0:i.resizedCallback)==null||l.call(i,g);break;case"message":N(S(6));break;case"scrollTo":O(!1);break;case"scrollToOffset":O(!0);break;case"inPageLink":$(S(9));break;case"reset":I(g);break;case"init":f(),(h=i==null?void 0:i.initCallback)==null||h.call(i,g.iframe);break;default:f()}}var z=m.data,g={};C()&&(r(" Received: "+z),g=H(),!re()&&pe()&&ie()&&(U(),T=!1))}function x(){c===null&&(c={x:window.pageXOffset!==void 0?window.pageXOffset:document.documentElement.scrollLeft,y:window.pageYOffset!==void 0?window.pageYOffset:document.documentElement.scrollTop},r(" Get page position: "+c.x+","+c.y))}function d(){c!==null&&(window.scrollTo(c.x,c.y),r(" Set page position: "+c.x+","+c.y),c=null)}function I(m){function f(){y(m),E("reset","reset",m.iframe)}r(" Size reset requested by "+(m.type==="init"?"host page":"iFrame")),x(),M(f,m,"init")}function y(m){function f(w){m.iframe.style[w]=m[w]+"px",r(" IFrame ("+m.iframe.id+") "+w+" set to "+m[w]+"px")}i.sizeHeight&&f("height"),i.sizeWidth&&f("width")}function M(m,f,w){w!==f.type&&j?(r(" Requesting animation frame"),j(m)):m()}function E(m,f,w){r("["+m+"] Sending msg to iframe ("+f+")"),w.contentWindow.postMessage(ee+f,"*")}function v(){function m(){function S(N){i[N]!==1/0&&i[N]!==0&&(C.style[N]=i[N]+"px",r(" Set "+N+" = "+i[N]+"px"))}S("maxHeight"),S("minHeight"),S("maxWidth"),S("minWidth")}function f(S){return C.setAttribute(Y.INITIALIZED_ATTRIBUTE,"true"),S===""&&(C.id=S="iFrameResizer"+a++,r(" Added missing iframe ID: "+S+" ("+C.src+")")),S}function w(){r(" IFrame scrolling "+(i.scrolling?"enabled":"disabled")+" for "+re),C.style.overflow=i.scrolling===!1?"hidden":"auto",C.scrolling=i.scrolling===!1?"no":"yes"}function H(){(typeof i.bodyMargin=="number"||i.bodyMargin==="0")&&(i.bodyMarginV1=i.bodyMargin,i.bodyMargin=""+i.bodyMargin+"px")}function G(){return re+":"+i.bodyMarginV1+":"+i.sizeWidth+":"+i.log+":"+i.interval+":"+i.enablePublicMethods+":"+i.autoResize+":"+i.bodyMargin+":"+i.heightCalculationMethod+":"+i.bodyBackground+":"+i.bodyPadding+":"+i.tolerance}function ie(S){e(C,"load",function(){var N=T;E("iFrame.onload",S,C),!N&&i.heightCalculationMethod in te&&I({iframe:C,height:0,width:0,type:"init"})}),E("init",S,C)}var C=this,re=f(C.id);w(),m(),H(),ie(G())}function A(m){if(typeof m!="object")throw new TypeError("Options is not an object.")}function k(m){m=m||{},A(m);for(var f in ne)ne.hasOwnProperty(f)&&(i[f]=m.hasOwnProperty(f)?m[f]:ne[f])}function X(){function m(f){if(!f.tagName)throw new TypeError("Object is not a valid DOM element");if(f.tagName.toUpperCase()!=="IFRAME")throw new TypeError("Expected <IFRAME> tag, found <"+f.tagName+">.");if(f.getAttribute(Y.INITIALIZED_ATTRIBUTE)==="true"){r(" Skipping already initialized iframe: "+(f.id||f.src));return}v.call(f)}return function(f,w){switch(k(f),typeof w){case"undefined":case"string":Array.prototype.forEach.call(document.querySelectorAll(w||"iframe"),H=>{let G=(H==null?void 0:H.src)||"";Me(H)&&m(H)});break;case"object":m(w);break;default:throw new TypeError("Unexpected data type ("+typeof w+").")}}}function Te(m){m.fn.iFrameResize=function(f){return k(f),this.filter("iframe").each(v).end()}}var a=0,T=!0,ze="message",Re=ze.length,ee="[iFrameSizer]",P=ee.length,V="",c=null,j=window.requestAnimationFrame,te={max:1,scroll:1,bodyScroll:1,documentElementScroll:1},i={},ne={autoResize:!0,bodyBackground:null,bodyMargin:null,bodyMarginV1:8,bodyPadding:null,checkOrigin:!0,enablePublicMethods:!1,heightCalculationMethod:"offset",interval:32,log:!1,maxHeight:1/0,maxWidth:1/0,minHeight:0,minWidth:0,scrolling:!1,sizeHeight:!0,sizeWidth:!1,tolerance:0,closedCallback:function(){},initCallback:function(){},messageCallback:function(){},resizedCallback:function(){},scrollCallback:function(){return!0}};t(),e(window,"message",p),window.jQuery&&Te(jQuery),typeof define=="function"&&define.amd?define([],X):typeof exports=="object"?module.exports=X():window.iFrameResize=X()}var Ye=nn;var Qe="embeddedIframes",se=e=>`${e}-overlay`,Q=e=>`${e}-div`,Le=e=>`${e}-wrapper`,we=e=>`${e}-header`,Ke=e=>`${e}-minimize-icon`,qe=e=>`${e}-close-icon`,be=e=>`${e}-minimize-text`,Ve=e=>`${e}-minimize-text-span`,je=e=>`v3_first_session_event_${e}`;var Ie=()=>Array.from(document.querySelectorAll("iframe")).filter(t=>Me(t)),Ge=()=>document.querySelectorAll(".containerModal"),ve=e=>{e.style.opacity="1",e.style.pointerEvents="auto",e.style.visibility="visible",e.style.display="block"},D=(e,t)=>{le(e.id)?(ve(e),typeof t=="function"&&t()):et(e.id,()=>{ve(e),typeof t=="function"&&t()})},de=e=>{e.style.opacity="0",e.style.visibility="hidden",e.style.pointerEvents="none",e.style.display="none"},Je=(e,t)=>{if(e){e.style.display="block";return}let n=document.getElementById(Q(t));if(n){n.style.display="block";return}},Ze=e=>{e.getAttribute(Y.INITIALIZED_ATTRIBUTE)==="true"&&e.setAttribute(Y.INITIALIZED_ATTRIBUTE,"false")},Xe=e=>{e==null||e.setAttribute(ae.HIDE_IFRAME_ATTRIBUTE,"false")};var u=window[oe.globalState]||(window[oe.globalState]={deactivateIframe:{},iframeActivated:{},processedIframes:{},resizedIframes:{},formStyles:{},managedIframes:[],iframeWindowMap:new WeakMap,initializedIframes:new Map,uninitializedIframes:new Set,pendingQueryParamsMessages:{},uniqueIframeIdMapped:new Set}),tt=()=>Object.keys(u.deactivateIframe).length,ce=e=>{var t;return(t=u.deactivateIframe[e])!=null?t:!1},Fe=e=>{var t;return(t=u.iframeActivated[e])!=null?t:!1};var nt=e=>{var t;return(t=u.processedIframes[e])!=null?t:!1};var it=e=>{if(e)return u.managedIframes.find(t=>t.contentWindow===e)},rt=e=>{if(e)return u.iframeWindowMap.get(e)},ot=()=>Array.from(u.uninitializedIframes),le=e=>{var t;return(t=u.resizedIframes[e])!=null?t:!1},at=e=>{var t;return(t=u.uniqueIframeIdMapped.has(e))!=null?t:!1},F=(e,t)=>{u.deactivateIframe[e]=t},on=(e,t)=>{u.iframeActivated[e]=t},st=(e,t)=>{u.formStyles[e]=t},Se=(e,t)=>{u.processedIframes[e]=t},dt=e=>{u.managedIframes=e},Ae=e=>{e.contentWindow&&u.iframeWindowMap.set(e.contentWindow,e)},lt=e=>{u.initializedIframes.set(e.id,e),u.uninitializedIframes.delete(e)},ct=e=>{let t=u.initializedIframes.get(e.id);return t?t!==e||!t.isConnected?(yt(e.id,t),!1):!0:!1},mt=e=>{u.initializedIframes.delete(e.id),u.uninitializedIframes.add(e)},pt=e=>{u.initializedIframes.has(e.id)||u.uninitializedIframes.add(e)},ft=(e,t)=>{u.resizedIframes[e]=t},et=(e,t)=>{u.pendingQueryParamsMessages[e]=t},ut=e=>u.pendingQueryParamsMessages[e],It=e=>{delete u.pendingQueryParamsMessages[e]},We=e=>{u.uniqueIframeIdMapped.add(e)},gt=({activationType:e,activationValue:t,deactivationType:n,deactivationValue:o,id:r,iframeDetails:s})=>{if(e==="activateOnVisit"&&Number(t)){let p=(s==null?void 0:s.visit)!==void 0&&s.visit>=Number(t);on(r,p),n==="leadCollected"&&(s!=null&&s.leadCollected)||p&&n==="deactivateAfter"&&s&&s.visit-Number(t)>=Number(o)?F(r,!0):p||F(r,!0)}else n==="leadCollected"&&(s!=null&&s.leadCollected)?F(r,!0):s&&n==="deactivateAfter"&&F(r,s.visit>Number(o))},yt=(e,t)=>{delete u.deactivateIframe[e],delete u.iframeActivated[e],delete u.processedIframes[e],delete u.resizedIframes[e],delete u.formStyles[e],delete u.pendingQueryParamsMessages[e],u.uniqueIframeIdMapped.delete(e),u.managedIframes=u.managedIframes.filter(n=>n.id!==e),u.initializedIframes.delete(e),t&&u.uninitializedIframes.delete(t)},ht=()=>{if(window[oe.cleanUp])return;window[oe.cleanUp]=!0,Array.from(u.initializedIframes.values()).forEach(t=>{t!=null&&t.isConnected||(Xe(t),yt(t.id,t))}),setTimeout(()=>{window[oe.cleanUp]=!1},1e3)};var ge={},J=e=>{if(e in ge)return ge[e];try{let t=window[e],n="__storage_test__";t.setItem(n,n),t.removeItem(n),ge[e]=!0}catch(t){ge[e]=!1}return ge[e]},K=e=>{if(!J("localStorage"))return null;let t=localStorage.getItem(e);return t||null},Z=(e,t)=>{J("localStorage")&&localStorage.setItem(e,t)},an=e=>{J("localStorage")&&localStorage.removeItem(e)},Tt=e=>{try{let t=K(e);if(!t)return null;let n=typeof t=="string"?JSON.parse(t):t;return typeof(n==null?void 0:n.expiry)!="number"?null:new Date().getTime()>n.expiry?(an(e),null):n.value}catch(t){return null}},_e=e=>{if(!J("sessionStorage"))return null;let t=sessionStorage.getItem(e);return t||null},Et=(e,t)=>{J("sessionStorage")&&sessionStorage.setItem(e,t)};var xt=e=>{let t=new URLSearchParams(e),n={};for(let[o,r]of t.entries())n[o]===void 0?n[o]=r:typeof n[o]=="string"?n[o]=[n[o],r]:Array.isArray(n[o])&&n[o].push(r);return n},Pe=e=>{let t=new URLSearchParams(e);for(let n of t.keys())if(n.startsWith("utm_"))return!0;return!1};var Ce=()=>{let e="";try{(window==null?void 0:window.top)!==window?e=window.top.location.search:e=window.location.search}catch(t){e=window.location.search}return e};Ye();function ye(){"use strict";let e=(d,I)=>`${d}${Ee}${I}`,t=()=>{try{let d=Ce();if(!Pe(d))return;let I=new URLSearchParams(d),y=_e(ue),M=new URLSearchParams(y||""),E=!1;for(let[v,A]of I.entries())if(v.startsWith("utm_")){let k=M.getAll(v);(k.length!==1||k[0]!==A)&&(M.set(v,A),E=!0)}if(E){let v=M.toString(),A=v?`?${v}`:"";Et(ue,A)}}catch(d){}};function n(d){if(!d)return;let{id:I,dataset:y}=d,M=ae.UNIQUE_ID_ATTRIBUTE;if(d.hasAttribute(M))return;if(d.setAttribute(M,"true"),I&&!at(I)){We(I);return}let E=I!=null&&I.length?I:Ne,v=1,A=E===Ne?e(E,v++):E;for(;document.getElementById(A);)A=e(E,v++);d.id=A,(!y.layoutIframeId||y.layoutIframeId===E)&&(y.layoutIframeId=A),We(A)}function o(){let d=Ge();!d||!(d!=null&&d.length)||d.forEach(I=>{I.querySelector("iframe")&&(I.style.position="absolute")})}function r(d){+d.height>=0&&(d.iframe.style.height=`${+d.height+5}px`)}function s(d){var I;if(o(),r(d),d!=null&&d.iframe){let y=(I=d==null?void 0:d.iframe)==null?void 0:I.id;if(!le(y)){ft(y,!0);let M=ut(y);M&&(It(y),M())}}}let p=d=>{Ae(d),window.iFrameResize({log:!1,checkOrigin:!1,enablePublicMethods:!0,scrolling:!0,resizedCallback:s,heightCalculationMethod:"offset",autoResize:!0,sizeWidth:!1,sizeHeight:!0},d),lt(d)},x=()=>{ht();let d=Ie();if(d.length===0)return;!window[ke]&&(t(),window[ke]=!0),d.forEach(E=>{ct(E)||(E.getAttribute(ae.HIDE_IFRAME_ATTRIBUTE)==="true"||(E.setAttribute(ae.HIDE_IFRAME_ATTRIBUTE,"true"),de(E)),n(E),Ze(E),pt(E))});let y=Ie();dt(y);let M=ot();M.length!==0&&M.forEach(E=>{p(E)})};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function d(){x(),document.removeEventListener("DOMContentLoaded",d)}):x()}var he=(e,t)=>{let n=e.parentNode;n?n.insertBefore(t,e.nextSibling):document.body.appendChild(t)},Mt=({id:e,layout:t,width:n,triggerType:o,triggerValue:r,height:s,background:p,iFrame:x,callback:d})=>{let I=document.getElementById(we(e));I&&(I.style.display=t.id==="INLINE"?"none":"flex",typeof n=="number"&&(I.style.width=window.matchMedia(`(max-width: ${n}px)`).matches?"100%":`${n}px`));let y=document.getElementById(Q(e)),M=document.getElementById(se(e));if(!y)return;t.id!=="INLINE"&&(y.style.background=`#${p}`,Number(s)>=500?y.classList.add("ep-iFrameLarge"):(t.id!=="POPUP"&&s>0&&(y.style.height=`${Number(s)}px`),y.classList.add("ep-overflow"))),D(x,()=>{y.style.display="block"}),typeof d=="function"&&d()};var Lt=`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.70875C17.91 5.31875 17.28 5.31875 16.89 5.70875L12 10.5888L7.11 5.69875C6.72 5.30875 6.09 5.30875 5.7 5.69875C5.31 6.08875 5.31 6.71875 5.7 7.10875L10.59 11.9988L5.7 16.8887C5.31 17.2787 5.31 17.9087 5.7 18.2987C6.09 18.6887 6.72 18.6887 7.11 18.2987L12 13.4087L16.89 18.2987C17.28 18.6887 17.91 18.6887 18.3 18.2987C18.69 17.9087 18.69 17.2787 18.3 16.8887L13.41 11.9988L18.3 7.10875C18.68 6.72875 18.68 6.08875 18.3 5.70875Z" fill="#475467"/></svg>`;var wt=`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 11H17C17.55 11 18 11.45 18 12C18 12.55 17.55 13 17 13H7C6.45 13 6 12.55 6 12C6 11.45 6.45 11 7 11Z" fill="#475467"/></svg>`;var q=(e,t)=>{let n=document.createElement(t||"div");return e&&n.setAttribute("id",e),n},bt=({id:e,borderRadius:t,boxShadow:n,layout:o})=>{let r=q(Q(e),"div");return r.className="ep-iFrameContainer",r.style.cssText=`border-radius: ${t}px; ${o.id!="INLINE"?`box-shadow: ${n}`:""}`,r},vt=({id:e,iFrame:t,iFrameContainer:n})=>{let o=se(e),r=document.getElementById(o);return r instanceof HTMLDivElement||(r=q(o,"div")),r.className="ep-overlay",he(t,r),r.appendChild(n),r},St=({id:e})=>{let t=q(we(e),"div");return t.className="ep-header",t},At=({id:e,layout:t})=>{let n=Ke(e),o=document.getElementById(n);return t.id!=="POPUP"&&(o=q(n,"div"),o.innerHTML=wt,o.className="ep-minimize-icon"),o},_t=({id:e,layout:t})=>{let n=qe(e),o=document.getElementById(n);return(t.id==="POPUP"||!t.allowMinimize)&&(o=q(n,"div"),o.className="ep-close-icon",o.innerHTML=Lt),o},Pt=({id:e,layout:t})=>{let n=q(be(e));return n.className="ep-minimize-text-container",n.style.display="none",t.id==="STICKY_SIDEBAR"?(n.classList.add("ep-minimize-tc-sticky"),t.isLeftAligned?n.classList.add("ep-minimize-tc-sticky-left"):n.classList.add("ep-minimize-tc-sticky-right")):t.id==="POLITE_SLIDE_IN"&&(n.classList.add("ep-minimize-tc-polite"),t.isLeftAligned?n.classList.add("ep-minimize-tc-polite-left"):n.classList.add("ep-minimize-tc-polite-right")),n},Ct=({id:e,formName:t,layout:n})=>{let o=q(Ve(e),"span");return o.innerText=n.minimizedTitle||t,o.className="ep-minimize-text",o.title=n.minimizedTitle||t,o.style.padding=n.id==="STICKY_SIDEBAR"?"20px 10px":"10px 30px",n.id==="POLITE_SLIDE_IN"&&(o.classList.add("ep-minimize-text-polite"),n.isLeftAligned?o.classList.add("ep-minimize-text-polite-left"):o.classList.add("ep-minimize-text-polite-right")),o},zt=({id:e,borderRadius:t})=>{let n=q(e);return n.setAttribute("id",Le(e)),n.className="ep-wrapper",n.style.cssText=`border-radius: ${t}px`,n};var Rt=({element:e,iFrameContainer:t,overlay:n,layout:o,id:r})=>{e&&e.addEventListener("click",()=>{t.style.display="none",o.id==="POPUP"&&n&&(n.style.display="none"),F(r,!0)})},Ht=({minimizeIconEle:e,iFrame:t,header:n,height:o,wrapperDiv:r,iFrameContainer:s,minimizeTextEle:p,layout:x})=>{e&&e.addEventListener("click",()=>{switch(de(t),n&&(n.style.display="none"),s.style.boxShadow="none",s.style.background="transparent",x.id){case"POLITE_SLIDE_IN":s.style.height="50px",s.style.width="50%";break;case"STICKY_SIDEBAR":Number(o)<=500&&(r.style.height="100%"),s.style.width="50px";break;default:break}p&&(p.style.display="flex",p.firstChild&&(p.firstChild.style.borderRadius=x.id==="STICKY_SIDEBAR"?"0px 8px 8px 0px":"8px 8px 0px 0px")),s.style.border="none"})},Nt=({minimizeTextEle:e,iFrame:t,iFrameContainer:n,header:o,styles:r,height:s,width:p,shadow:x})=>{e.firstChild&&e.firstChild.addEventListener("click",()=>{n.style.boxShadow=x,e.style.display="none",typeof p=="number"&&(window.matchMedia(`(max-width: ${p}px)`).matches?(n.style.width="100%",t.style.width="100%"):n.style.width=`${p}px`,window.matchMedia(`(max-width: ${p}px)`).matches&&(n.style.marginTop=`-${s/2}px`)),n.style.height=Number(s)>=500?"500px":`${Number(s)}px`,r!=null&&r.background&&(n.style.background=`#${r.background}`),o&&(o.style.display="flex"),D(t)})};var Dt=({iFrameContainer:e,iFrame:t,header:n,width:o,layout:r,id:s,height:p})=>{if(o===void 0||typeof o!="number")return;let x=window.matchMedia(`(max-width: ${o}px)`);x&&x.addEventListener("change",d=>{var I,y;d.matches?(((I=document.getElementById(`${s}-minimize-text`))==null?void 0:I.style.display)==="none"?(e.style.width="100%",t.style.width="100%"):r.id==="POLITE_SLIDE_IN"&&(e.style.width="50%"),n.style.width="100%"):((y=document.getElementById(`${s}-minimize-text`))==null?void 0:y.style.display)==="none"?e.style.width=`${o}px`:(e.style.marginTop=Number(p)>=500?"-250px":`-${p/2}px`,r.id==="STICKY_SIDEBAR"&&(e.style.width="50px")),n.style.width=`${o}px`})};var kt=({triggerValue:e,activationType:t,iframeActivated:n,layout:o,overlay:r,header:s,iFrameContainer:p,iFrame:x,height:d,id:I})=>{let y=be(I),M=()=>{let E=document.getElementById(y);if(!E||E.style.display==="none"){let A=document.documentElement.scrollHeight-window.innerHeight,k=A>0?window.scrollY/A*100:0;!ce(I)&&Number(e)&&k>=e&&(t==="alwaysActivated"||n)&&(o.id==="POPUP"&&r&&(r.style.display="flex"),o.id!=="INLINE"&&(s&&(s.style.display="flex"),Number(d)>=500?p.classList.add("ep-iFrameLarge"):(p.style.height=`${Number(d)}px`,p.classList.add("ep-overflow"))),D(x,()=>{p.style.display="block"}),window.removeEventListener("scroll",M))}};window.addEventListener("scroll",M,{passive:!0})};var Be=e=>typeof e!="object"?!0:Object.keys(e).length===0,W=e=>{if(!e)return null;try{return e.includes("'")&&!e.includes('"')&&(e=e.replace(/'/g,'"')),JSON.parse(e)}catch(t){return null}},Ot=e=>{try{return JSON.parse(e),!0}catch(t){return!1}};var Ut=(e,t)=>{t.isRightAligned?e.classList.add("ep-right"):e.classList.add("ep-left")},Ft=({iFrameContainer:e,height:t,layout:n})=>{e.classList.add("ep-sticky-sidebar"),Ut(e,n),Number(t)>=500?e.style.marginTop="-250px":e.style.marginTop=`-${t/2}px`},Wt=({iFrameContainer:e,layout:t})=>{e.classList.add("ep-polite-slide-in","ep-bottom"),Ut(e,t)},Bt=({iFrameContainer:e,width:t})=>{if(typeof t!="number"){e.classList.add("ep-popup");return}e.style.width=window.matchMedia(`(max-width: ${t}px)`).matches?"100%":`${t}px`,e.classList.add("ep-popup")},$t=(e,t,n)=>{Ue(t)&&e>800&&window.innerHeight>800&&(n.style.height="800px")},Yt=e=>{if(!e||Be(e))return"";let{shadow:t}=e;return!t||Be(t)?"":`${t==null?void 0:t.horizontal}px ${t==null?void 0:t.vertical}px ${t==null?void 0:t.blur}px ${t==null?void 0:t.spread}px #${t==null?void 0:t.color}`};var mn=e=>{var t,n,o,r,s,p,x,d,I,y,M,E,v,A,k,X,Te;try{let a=e.iframe;if(!a)return;let T=a.id,ze=Ce(),Re=xt(ze),ee=je(e.locationId||""),P=Tt(ee),V=new URL(document.location.href);if(P!=null&&P.url_params)for(let _ in P.url_params)_&&P.url_params[_]&&V.searchParams.append(_,P.url_params[_]);if(!Pe(V.search)){let _=_e(ue);if(_){let Xt=new URLSearchParams(_);for(let[$e,en]of Xt.entries())V.searchParams.has($e)||V.searchParams.append($e,en)}}let c=W(((t=a==null?void 0:a.dataset)==null?void 0:t.layout)||""),j=(n=a==null?void 0:a.dataset)==null?void 0:n.layoutIframeId,te=["query-params",Re,V.toString(),P!=null&&P.referrer?P==null?void 0:P.referrer:document.referrer,c?j:(o=T==null?void 0:T.split(Ee))==null?void 0:o[0]];if(nt(T)){(r=a==null?void 0:a.contentWindow)==null||r.postMessage(te,"*"),Je(null,T),!(a.getAttribute("data-iframe-resizer-initialized")==="true")&&!le(T)?ve(a):D(a);return}if(!c){(s=a==null?void 0:a.contentWindow)==null||s.postMessage(te,"*"),D(a),Se(T,!0);return}let i;e.styles&&(i=e.styles,e.entityId&&st(e.entityId,{background:i.background,width:i.width,height:i.ac_branding?i.height+(i.headerImageSrc?430:155):i.height+(i.headerImageSrc?310:35),border:i.border,boxShadow:Yt(i)}));let ne=(p=a==null?void 0:a.dataset)==null?void 0:p.triggerType,m=Number((x=a==null?void 0:a.dataset)==null?void 0:x.triggerValue),f=(d=a==null?void 0:a.dataset)==null?void 0:d.activationType,w=Number((I=a==null?void 0:a.dataset)==null?void 0:I.activationValue),H=(y=a==null?void 0:a.dataset)==null?void 0:y.deactivationType,G=Number((M=a==null?void 0:a.dataset)==null?void 0:M.deactivationValue),ie=(E=i==null?void 0:i.border)==null?void 0:E.radius,C=i==null?void 0:i.boxShadow,re=(v=a==null?void 0:a.dataset)==null?void 0:v.formName,S=a.parentNode,N=Le(T);if(S&&"id"in S&&S.id===N){(A=a==null?void 0:a.contentWindow)==null||A.postMessage(te,"*"),D(a),Se(T,!0);return}let pe=xe(T),fe=K(pe),O;if(fe)O=W(fe),O&&(O.visit=O.visit+1,Z(pe,JSON.stringify(O)));else{let _={id:T,visit:1,layout:c};Z(pe,JSON.stringify(_)),O=_}let B,$,U,z,g=i!=null&&i.height?+(i==null?void 0:i.height):(k=a==null?void 0:a.dataset)!=null&&k.height?+((X=a==null?void 0:a.dataset)==null?void 0:X.height):0,l=bt({id:T,borderRadius:ie,boxShadow:C,layout:c}),h=zt({id:T,borderRadius:ie}),b=_t({id:T,layout:c}),L=typeof+(i==null?void 0:i.width)=="number"&&+(i==null?void 0:i.width)>=0?+(i==null?void 0:i.width):void 0;if((c==null?void 0:c.id)!=="INLINE"){a.style.border="none",(c==null?void 0:c.id)==="POPUP"?(a.style.position="",$t(g,a,l),U=vt({id:T,iFrame:a,iFrameContainer:l})):(g>0&&(a.style.height=`${g}px`),a.style.position=(c==null?void 0:c.id)==="POLITE_SLIDE_IN"?"relative":"absolute",he(a,l)),h==null||h.appendChild(a),l.appendChild(h),(c==null?void 0:c.id)==="STICKY_SIDEBAR"?Ft({iFrameContainer:l,height:g,layout:c}):(c==null?void 0:c.id)==="POLITE_SLIDE_IN"?Wt({iFrameContainer:l,layout:c}):(c==null?void 0:c.id)==="POPUP"&&Bt({iFrameContainer:l,width:L}),z=St({id:T}),h.insertBefore(z,a),typeof L=="number"&&(l.style.width=window.matchMedia(`(max-width: ${L}px)`).matches?"100%":`${L}px`,a.style.width=window.matchMedia(`(max-width: ${L}px)`).matches?"100%":`${L}px`,z.style.width=window.matchMedia(`(max-width: ${L}px)`).matches?"100%":`${L}px`,Dt({iFrameContainer:l,iFrame:a,header:z,width:L,layout:c,id:T,height:g})),c!=null&&c.allowMinimize&&(B=At({id:T,layout:c}),B&&z.appendChild(B)),b&&z.appendChild(b),$=Pt({id:T,layout:c});let _=Ct({id:T,formName:re,layout:c});$.appendChild(_),h.insertBefore($,a)}else he(a,l),h==null||h.appendChild(a),l.appendChild(h);gt({activationType:f,activationValue:w,deactivationType:H,deactivationValue:G,id:T,iframeDetails:O}),ce(T)&&H!=="neverDeactivate"?(de(a),l.style.display="none",U&&(U.style.display="none")):ne==="showOnScrolling"&&Number(m)?kt({triggerValue:m,activationType:f,iframeActivated:Fe(T),layout:c,overlay:U,header:z,iFrameContainer:l,iFrame:a,height:g,id:T}):!Number(m)&&(f==="alwaysActivated"||Fe(T))&&(c.id!=="INLINE"&&(Number(g)>=500?l.classList.add("ep-iFrameLarge"):(c.id!=="POPUP"&&(l.style.height=`${Number(g)}px`),l.classList.add("ep-overflow"))),c.id==="POPUP"&&U&&(U.style.display="flex"),D(a,()=>{l.style.display="block"})),c.id!=="INLINE"&&(b&&Rt({element:b,iFrameContainer:l,overlay:U,layout:c,id:T}),B&&Ht({minimizeIconEle:B,iFrame:a,header:z,height:g,wrapperDiv:h,iFrameContainer:l,minimizeTextEle:$,layout:c}),$&&Nt({minimizeTextEle:$,iFrame:a,iFrameContainer:l,header:z,styles:i,height:g,width:L,shadow:i==null?void 0:i.boxShadow})),(Te=a==null?void 0:a.contentWindow)==null||Te.postMessage(te,"*");let He=()=>{Mt({id:T,layout:c,width:i==null?void 0:i.width,triggerType:ne,triggerValue:m,height:g,background:i==null?void 0:i.background,iFrame:a})};a.addEventListener("load",He),Se(T,!0)}catch(a){}},Qt=mn;var pn=e=>{var r;let t=s=>K(s),n=()=>{let s=K("_ud");return s&&typeof s=="string"?W(s):null},o=s=>{var d;let p=(d=n())!=null?d:void 0;return(p==null?void 0:p.location_id)===s?p:void 0};if(e.locationId){let s=e.iframe;if(!s)return;(r=s==null?void 0:s.contentWindow)==null||r.postMessage(["sticky-contacts",o(e.locationId),t(e.locationId)],"*")}},Kt=pn;var fn=e=>{e.url&&window.history.replaceState(null,"",e.url)},qt=fn;var un=(e,t)=>{var n;if(J("localStorage"))try{if(e.userDataKey&&e.iframeId){let o=xe(e.iframeId);if(e.userDataKey===o){let r=K(o);if(r){let p=JSON.parse(r);Z(o,JSON.stringify({...p,leadCollected:!0}));let x=(n=e==null?void 0:e.iframe)==null?void 0:n.dataset.layout,d=W(x);if(d&&d.id!=="INLINE"){let I=document.getElementById(se(e.iframeId)),y=document.getElementById(Q(e.iframeId));setTimeout(()=>{I&&(I.style.display="none"),y&&(y.style.display="none",F(e.iframeId,!0))},5e3)}}}}else Z(e.userDataKey,e.cookiePayload)}e.locationId&&e.fingerprint&&Z(e.locationId,e.fingerprint)}catch(o){}},Vt=un;var jt=e=>{let{data:t,source:n}=e,o=t[0];if(!new Set(["iframeLoaded","fetch-query-params","fetch-sticky-contacts","set-sticky-contacts","modify-parent-url"]).has(o))return{iframe:void 0,action:o,locationId:null};let s=rt(n);if(!s&&n&&(s=it(n),s&&Ae(s)),!s&&n){let x=Ie().find(d=>d.contentWindow===n);x&&(s=x)}switch(o){case"fetch-sticky-contacts":return{iframe:s,action:o,locationId:t[1]||null};case"set-sticky-contacts":{let p=t[2],x=!Ot(p);return{iframe:s,action:o,userDataKey:t[1]||null,iframeId:x&&p?p:null,cookiePayload:!x&&p?p:null,locationId:t[3]||null,fingerprint:t[4]||null}}case"fetch-query-params":return{iframe:s,action:o,windowName:t[1]||null,locationId:t[2]||null,entityId:t[3]||null,styles:W(t[4])||null};case"modify-parent-url":return{iframe:s,action:o,locationId:null,url:t[1]||null};default:return{iframe:s,action:o,locationId:null}}};var Gt="__ghl_message_handler_registered__",Jt=()=>{window[Gt]||(window[Gt]=!0,window.addEventListener("message",e=>{let t=jt(e);switch(t.action){case"iframeLoaded":{if(!t.iframe)return;mt(t.iframe),t.iframe.setAttribute(Y.INITIALIZED_ATTRIBUTE,"false"),ye();break}case"fetch-query-params":Qt(t);break;case"fetch-sticky-contacts":Kt(t);break;case"set-sticky-contacts":Vt(t,e);break;case"modify-parent-url":qt(t);break;default:break}}))};var Zt=()=>{if(window!=null&&window[Oe])return;window[Oe]=!0;let e=document.createElement("style");e.type="text/css",e.id=Qe;let t=".ep-iFrameContainer{width:100%}.ep-header,.ep-iFrameContainer,.ep-overlay{display:none}.ep-iFrame{border:none}.ep-iFrameLarge{height:500px;overflow:auto}.ep-overflow{overflow:unset}.ep-overlay{z-index:10000;position:fixed;top:0;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);transition:opacity .2s;width:100%;justify-content:center;align-items:center}.ep-wrapper{width:100%}.ep-header{justify-content:flex-end;position:fixed;border-radius:5px;z-index:1}.ep-close-icon,.ep-minimize-icon{background:#e8e8e8;width:23px;height:23px;margin:3px 6px 0 0;z-index:999;color:#4a4a4a;transition:background .25s;text-align:center;cursor:pointer}.ep-minimize-icon{border-radius:50%;line-height:.3ch;font-size:22px;border:1px solid #ccc;font-family:sans-serif}.ep-close-icon{border-radius:50%;line-height:1.5ch;font-size:20px;border:1px solid #ccc;font-family:Montserrat}.ep-minimize-text-container{height:100%;text-align:center}.ep-minimize-tc-sticky{writing-mode:vertical-lr;justify-content:center}.ep-minimize-tc-sticky-left{transform:rotate(360deg)}.ep-minimize-tc-sticky-right{transform:rotate(180deg)}.ep-minimize-tc-polite{align-items:end;width:100%}.ep-minimize-tc-polite-left{justify-content:start}.ep-minimize-tc-polite-right{justify-content:end}.ep-minimize-text{background-color:#000;cursor:pointer;color:#fff;white-space:nowrap;overflow:hidden;max-width:380px;text-overflow:ellipsis}.ep-minimize-text-polite{margin-bottom:8px}.ep-minimize-text-polite-left{margin-left:25px;margin-right:8px}.ep-minimize-text-polite-right{margin-left:8px;margin-right:25px}.ep-sticky-sidebar{top:50%;z-index:9999;position:fixed}.ep-height,.ep-sticky-sidebar .ep-wrapper{height:100%}.ep-polite-slide-in{z-index:9999;position:fixed}.ep-inline,.ep-popup{position:relative;margin:auto}.ep-polite-slide-in .ep-wrapper{position:absolute}.ep-popup{z-index:9999}.ep-inline{overflow:unset;boxshadow:none}.ep-right{right:15px}.ep-left{left:15px}.ep-bottom{bottom:15px}@media only screen and (max-width:550px){.ep-iFrame,.ep-iFrameContainer{width:100%}.ep-popup{width:100%!important}.ep-right{right:0}.ep-left{left:0}.ep-bottom{bottom:0}}";e.innerText=t,document.head.appendChild(e)};Zt();Jt();ye();window.addEventListener("error",function(e){e.message.includes("iframeResizer")});})();</script>
+<!-- floating WhatsApp button -->
+<a href="https://wa.me/4915165241268" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp kontaktieren">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+  WhatsApp
+</a>
+</body>
+</html>

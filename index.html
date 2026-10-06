@@ -5,11 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Salon Bassma – Damen Friseursalon Erfurt</title>
   <meta name="description" content="Professionelle Haar- und Kosmetikbehandlungen in entspannter Atmosphäre. Salon Bassma in Erfurt – Ihr exklusiver Damensalon." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="preload" href="fonts/cormorant-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
 
   <style>
+    /* =========================================
+       FONTS – lokal gehostet (kein Google-CDN,
+       damit keine IP-Übertragung an Google erfolgt)
+    ========================================= */
+    @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 600;font-display:swap;src:url(fonts/cormorant-garamond-italic-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+    @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300 600;font-display:swap;src:url(fonts/cormorant-garamond-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(fonts/cormorant-garamond-normal-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+    @font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 600;font-display:swap;src:url(fonts/cormorant-garamond-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    @font-face{font-family:'DM Sans';font-style:italic;font-weight:300 400;font-display:swap;src:url(fonts/dm-sans-italic-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+    @font-face{font-family:'DM Sans';font-style:italic;font-weight:300 400;font-display:swap;src:url(fonts/dm-sans-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    @font-face{font-family:'DM Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(fonts/dm-sans-normal-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+    @font-face{font-family:'DM Sans';font-style:normal;font-weight:300 500;font-display:swap;src:url(fonts/dm-sans-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
     /* =========================================
        TOKENS
     ========================================= */
@@ -320,25 +332,6 @@
     /* =========================================
        CTA SECTION
     ========================================= */
-    /* =========================================
-       BOOKING SECTION
-    ========================================= */
-    .sec-booking{background:var(--light);padding:120px 80px;position:relative}
-    .booking-wrap{max-width:1000px;margin:0 auto}
-    .booking-hd{text-align:center;margin-bottom:56px}
-    .booking-hd .label{justify-content:center}
-    .booking-hd .label::before{display:none}
-    .booking-hd .label::after{content:'';width:22px;height:1px;background:var(--gold-dim)}
-    .booking-hd h2{font-family:var(--disp);font-size:clamp(2.4rem,3.8vw,4rem);font-weight:300;color:var(--bg);line-height:1.1;margin-bottom:12px}
-    .booking-hd h2 em{font-style:italic;color:var(--rose)}
-    .booking-hd p{font-size:.9rem;font-weight:300;color:var(--muted);max-width:480px;margin:0 auto}
-    .booking-frame{background:#fff;border-radius:var(--r-xl);overflow:visible;box-shadow:0 8px 60px rgba(90,64,53,.1);border:1px solid rgba(201,164,110,.15)}
-    .booking-frame iframe{width:100%;border:none;display:block;min-height:1400px;border-radius:var(--r-xl)}
-    .booking-alt{margin-top:32px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
-    .booking-alt p{font-size:.78rem;color:var(--muted)}
-    .booking-alt a{font-size:.78rem;color:var(--rose-dim);text-decoration:underline;text-underline-offset:3px}
-    .booking-alt a:hover{color:var(--rose)}
-
     .sec-cta{background:var(--surface);padding:100px 80px;text-align:center;position:relative;overflow:hidden}
     .cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(201,164,110,.07) 0%,transparent 70%);pointer-events:none}
     .cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
@@ -418,7 +411,7 @@
       .hero-ring,.hero-ring-2,.float-card:last-of-type{display:none}
       .hero-img-wrap{width:200px;height:260px}
       .scroll-hint{display:none}
-      .sec-about,.sec-services,.sec-preise,.sec-gallery,.sec-booking,.sec-cta,.sec-agb{padding:80px 24px}
+      .sec-about,.sec-services,.sec-preise,.sec-gallery,.sec-cta,.sec-agb{padding:80px 24px}
       .agb-grid{grid-template-columns:1fr 1fr}
       .about-cols{grid-template-columns:1fr}
       .sec-hd{flex-direction:column;align-items:flex-start}
@@ -600,7 +593,7 @@
     <div class="hero-blob"></div>
     <div class="hero-blob-2"></div>
     <div class="hero-img-wrap">
-      <img src="https://drive.google.com/thumbnail?id=1z1GVspsN3twrFh2xrB5cbUiZpTQeuAzd&sz=w800" alt="Salon Bassma – Damensalon Erfurt" loading="eager" />
+      <img src="img/salon-14.jpg" alt="Salon Bassma – Damensalon Erfurt" loading="eager" />
     </div>
     <div class="float-card">
       <span class="fc-num">Mo–Sa</span>
@@ -679,17 +672,17 @@
     <div class="team-grid reveal d1">
       <div class="team-card">
         <div class="about-photo">
-          <img src="https://drive.google.com/thumbnail?id=1B7aIfD02-7D7vFJ2CJbtcmJguQk_7gTa&sz=w800" alt="Team Salon Bassma" loading="lazy" />
+          <img src="img/salon-02.jpg" alt="Team Salon Bassma" loading="lazy" />
         </div>
       </div>
       <div class="team-card">
         <div class="about-photo">
-          <img src="https://drive.google.com/thumbnail?id=1Oyw43-cxWnygj9nqkHbSUhEdUdGPE2cY&sz=w800" alt="Team Salon Bassma" loading="lazy" />
+          <img src="img/salon-06.jpg" alt="Team Salon Bassma" loading="lazy" />
         </div>
       </div>
       <div class="team-card">
         <div class="about-photo">
-          <img src="https://drive.google.com/thumbnail?id=1alVKvIxhuoSpiihRtPknW56L5alg6jus&sz=w800" alt="Team Salon Bassma" loading="lazy" />
+          <img src="img/salon-08.jpg" alt="Team Salon Bassma" loading="lazy" />
         </div>
       </div>
     </div>
@@ -746,7 +739,7 @@
 
     <div class="bento">
       <div class="bc bc-xl reveal d1">
-        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1sYuGE8DE2vrgQhVuyVK3saJL3-5ph5Zw&sz=w800" alt="" loading="lazy"/></div>
+        <div class="bc-bg"><img src="img/salon-10.jpg" alt="" loading="lazy"/></div>
         <div class="bc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M18 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M9 9h6m-3 3v9"/></svg>
         </div>
@@ -754,7 +747,7 @@
         <p class="bc-text">Präziser Schnitt, angepasst an deine Haarstruktur und deinen Lifestyle. Elegante Hochsteckfrisuren für besondere Anlässe. Ab 15 €.</p>
       </div>
       <div class="bc bc-xl reveal d2">
-        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1HO1UVJZIVdLowxh3LPUeAnfhXL8tujzW&sz=w800" alt="" loading="lazy"/></div>
+        <div class="bc-bg"><img src="img/salon-04.jpg" alt="" loading="lazy"/></div>
         <div class="bc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
@@ -763,7 +756,7 @@
         <span class="bc-tag">inkl. WhatsApp</span>
       </div>
       <div class="bc bc-md reveal d3">
-        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1q2p4b_S7GAZNA7afpzO_Wh1IrGtdTvKY&sz=w600" alt="" loading="lazy"/></div>
+        <div class="bc-bg"><img src="img/salon-09.jpg" alt="" loading="lazy"/></div>
         <div class="bc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
         </div>
@@ -771,7 +764,7 @@
         <p class="bc-text">Tages-, Abend- & Braut Make-up. Glamourös und langanhaltend. Ab 40 €.</p>
       </div>
       <div class="bc bc-md reveal d4">
-        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1KAc3rEZAIFn_uOrs5p6vRVn0kOGC6940&sz=w600" alt="" loading="lazy"/></div>
+        <div class="bc-bg"><img src="img/salon-05.jpg" alt="" loading="lazy"/></div>
         <div class="bc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </div>
@@ -780,7 +773,7 @@
         <span class="bc-tag">Kosmetik</span>
       </div>
       <div class="bc bc-sm reveal d3">
-        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1v9fseSY7iwDJnhi293W2El7GEr72Z0pa&sz=w600" alt="" loading="lazy"/></div>
+        <div class="bc-bg"><img src="img/salon-12.jpg" alt="" loading="lazy"/></div>
         <div class="bc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
@@ -788,7 +781,7 @@
         <p class="bc-text">Zupfen per Faden, Färben & Permanent Make-up. Ab 7 €.</p>
       </div>
       <div class="bc bc-sm reveal d4">
-        <div class="bc-bg"><img src="https://drive.google.com/thumbnail?id=1yVY5eH_cim6LWDmjJmpZJIhKd9y44dCn&sz=w600" alt="" loading="lazy"/></div>
+        <div class="bc-bg"><img src="img/salon-13.jpg" alt="" loading="lazy"/></div>
         <div class="bc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s4.5-7 10-7 10 7 10 7-4.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg>
         </div>
@@ -970,39 +963,39 @@
 
     <div class="masonry reveal">
       <div class="m-item">
-        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1tHtiAjFF8-44jhi1bBXqGpDCNt5Wexpz&sz=w800" alt="Brautfrisur" loading="lazy" />
+        <img class="m-photo" src="img/salon-11.jpg" alt="Brautfrisur" loading="lazy" />
         <div class="m-overlay"><span class="m-label">Brautfrisur</span></div>
       </div>
       <div class="m-item">
-        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1sYuGE8DE2vrgQhVuyVK3saJL3-5ph5Zw&sz=w800" alt="Gefärbtes Haar" loading="lazy" />
+        <img class="m-photo" src="img/salon-10.jpg" alt="Gefärbtes Haar" loading="lazy" />
         <div class="m-overlay"><span class="m-label">Gefärbtes Haar</span></div>
       </div>
       <div class="m-item">
-        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1q2p4b_S7GAZNA7afpzO_Wh1IrGtdTvKY&sz=w800" alt="Make-up" loading="lazy" />
+        <img class="m-photo" src="img/salon-09.jpg" alt="Make-up" loading="lazy" />
         <div class="m-overlay"><span class="m-label">Make-up</span></div>
       </div>
       <div class="m-item">
-        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1HO1UVJZIVdLowxh3LPUeAnfhXL8tujzW&sz=w800" alt="Blondes Haar" loading="lazy" />
+        <img class="m-photo" src="img/salon-04.jpg" alt="Blondes Haar" loading="lazy" />
         <div class="m-overlay"><span class="m-label">Blondes Haar</span></div>
       </div>
       <div class="m-item">
-        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1yVY5eH_cim6LWDmjJmpZJIhKd9y44dCn&sz=w800" alt="Nails" loading="lazy" />
+        <img class="m-photo" src="img/salon-13.jpg" alt="Nails" loading="lazy" />
         <div class="m-overlay"><span class="m-label">Nails</span></div>
       </div>
       <div class="m-item">
-        <img class="m-photo" src="https://drive.google.com/thumbnail?id=17MsQgyA0O-cZMlMq0X8iLTfMeUX_uUEz&sz=w800" alt="Weißes Haar" loading="lazy" />
+        <img class="m-photo" src="img/salon-01.jpg" alt="Weißes Haar" loading="lazy" />
         <div class="m-overlay"><span class="m-label">Weißes Haar</span></div>
       </div>
       <div class="m-item">
-        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1KAc3rEZAIFn_uOrs5p6vRVn0kOGC6940&sz=w800" alt="Gesichtsbehandlung" loading="lazy" />
+        <img class="m-photo" src="img/salon-05.jpg" alt="Gesichtsbehandlung" loading="lazy" />
         <div class="m-overlay"><span class="m-label">Gesichtsbehandlung</span></div>
       </div>
       <div class="m-item">
-        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1EZJr87ohRD4t-KhK2nB4dF47gswMWSyo&sz=w800" alt="Strähnchen" loading="lazy" />
+        <img class="m-photo" src="img/salon-03.jpg" alt="Strähnchen" loading="lazy" />
         <div class="m-overlay"><span class="m-label">Strähnchen</span></div>
       </div>
       <div class="m-item">
-        <img class="m-photo" src="https://drive.google.com/thumbnail?id=1WD09pxt5w2vrtPrJsLB5cgXj3cTUYrI1&sz=w800" alt="Haarschnitt" loading="lazy" />
+        <img class="m-photo" src="img/salon-07.jpg" alt="Haarschnitt" loading="lazy" />
         <div class="m-overlay"><span class="m-label">Haarschnitt</span></div>
       </div>
       <div class="m-item">
@@ -1025,29 +1018,8 @@
   </div>
 </section>
 
-<!-- ======================== TERMIN BUCHEN ======================== -->
-<section class="sec-booking" id="termin">
-  <div class="booking-wrap">
-    <div class="booking-hd reveal">
-      <p class="label dark">Online Buchung</p>
-      <h2>Deinen Termin<br><em>jetzt direkt buchen.</em></h2>
-      <p>Wähle einfach deine gewünschte Leistung und einen freien Termin – schnell, einfach und ohne Anruf.</p>
-    </div>
-    <div class="booking-frame reveal d1">
-      <iframe src="https://api.leadconnectorhq.com/widget/service-menu/69ba952939829d6f122bd916" style="width:100%;border:none;overflow:hidden;min-height:700px;" scrolling="no" id="69ba952939829d6f122bd916_1774986237264"></iframe>
-      <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
-    </div>
-    <div class="booking-alt reveal d2">
-      <p>Lieber persönlich anfragen?</p>
-      <a href="https://wa.me/4915165241268" target="_blank" rel="noopener">Auf WhatsApp schreiben</a>
-      <span style="color:var(--muted);font-size:.7rem">·</span>
-      <a href="tel:+4936126267722">+49 361 26267722</a>
-    </div>
-  </div>
-</section>
-
-<!-- ======================== CTA ======================== -->
-<section class="sec-cta">
+<!-- ======================== CTA / TERMIN ======================== -->
+<section class="sec-cta" id="termin">
   <div class="cta-glow"></div>
   <div class="cta-inner">
     <p class="cta-eyebrow reveal">Termin buchen</p>
@@ -1087,7 +1059,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
         <h4>Anzahlung</h4>
-        <p>Bei jeder Terminreservierung erforderlich & nicht erstattungsfähig.</p>
+        <p>Wird bei der Terminvereinbarung am Telefon oder per WhatsApp mit dir abgesprochen und ist nicht erstattungsfähig.</p>
       </div>
       <div class="agb-card reveal d2">
         <div class="agb-icon">
@@ -1121,8 +1093,8 @@
         <div class="agb-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </div>
-        <h4>Buchungsbestätigung</h4>
-        <p>Mit der Buchung akzeptiert die Kundin unsere AGB.</p>
+        <h4>Terminbestätigung</h4>
+        <p>Mit der Terminvereinbarung akzeptiert die Kundin unsere AGB.</p>
       </div>
     </div>
     <div class="agb-note reveal">
@@ -1164,12 +1136,13 @@
         <li><a href="#preise">Preise</a></li>
         <li><a href="#galerie">Galerie</a></li>
         <li><a href="#agb">AGB</a></li>
+        <!-- Impressum + Datenschutzerklaerung liegen lokal bereit und gehen live, sobald die Pflichtangaben vollstaendig sind -->
         <li><a href="https://wa.me/4915165241268" target="_blank" rel="noopener" style="color:#25D366">Termin buchen</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-btm">
-    <p>© 2025 <span>Salon Bassma</span>. Damen Friseursalon Erfurt. Alle Rechte vorbehalten.</p>
+    <p>© 2026 <span>Salon Bassma</span>. Damen Friseursalon Erfurt. Alle Rechte vorbehalten.</p>
     <p>Made with care</p>
   </div>
 </footer>
@@ -1333,7 +1306,6 @@
     btn.addEventListener('mouseleave',function(){this.style.transform='';});
   });
 </script>
-<script type="text/javascript">"use strict";(()=>{var Ee="___",Ne="ghl_embed",ue="UPS",De="__ghl_iframe_resizer_initialized__",ke="__ghl_widget_initialized__",Oe="__ghl_global_style_injected__",oe={cleanUp:"__ghl_is_cleaning_up__",globalState:"__GHL_EMBED_STATE__"},Y={INITIALIZED_ATTRIBUTE:"data-iframe-resizer-initialized"},ae={UNIQUE_ID_ATTRIBUTE:"data-unique-id-mapped",HIDE_IFRAME_ATTRIBUTE:"data-initial-iframe-hidden"},xe=e=>`embedded_iframe_${e}`;var tn=e=>{var n,o;let t=e.src;return((n=t==null?void 0:t.includes)==null?void 0:n.call(t,"/quiz"))||((o=t==null?void 0:t.includes)==null?void 0:o.call(t,"/survey"))},Ue=e=>{var n;let t=e.src;return((n=t==null?void 0:t.includes)==null?void 0:n.call(t,"/form"))||tn(e)},Me=e=>{var n,o,r,s;let t=e.src;return Ue(e)||((n=t==null?void 0:t.includes)==null?void 0:n.call(t,"/booking"))||((o=t==null?void 0:t.includes)==null?void 0:o.call(t,"/group"))||((r=t==null?void 0:t.includes)==null?void 0:r.call(t,"/rentals"))||((s=t==null?void 0:t.includes)==null?void 0:s.call(t,"/service-menu"))||!1};function nn(){"use strict";if(window[De])return;window[De]=!0;function e(m,f,w){"addEventListener"in window?m.addEventListener(f,w,!1):"attachEvent"in window&&m.attachEvent("on"+f,w)}function t(){var m,f=["moz","webkit","o","ms"];for(m=0;m<f.length&&!j;m+=1)j=window[f[m]+"RequestAnimationFrame"];j||r(" RequestAnimationFrame not supported")}function n(){var m="Host page";return window.top!==window.self&&(m=window.parentIFrame?window.parentIFrame.getId():"Nested host page"),m}function o(m){return ee+"["+n()+"]"+m}function r(m){i.log&&window.console}function s(m){window.console}function p(m){function f(){function l(){var h;y(g),d(),(h=i==null?void 0:i.resizedCallback)==null||h.call(i,g)}G("Height"),G("Width"),M(l,g,"resetPage")}function w(l){var h=l.id;r(" Removing iFrame: "+h),l.parentNode.removeChild(l),i.closedCallback(h),r(" --")}function H(){var l=z.substr(P).split(":");return{iframe:document.getElementById(l[0]),id:l[0],height:l[1],width:l[2],type:l[3]}}function G(l){var h=Number(i["max"+l]),b=Number(i["min"+l]),L=l.toLowerCase(),R=Number(g[L]);if(b>h)throw new Error("Value for min"+l+" can not be greater than max"+l);r(" Checking "+L+" is in range "+b+"-"+h),b>R&&(R=b,r(" Set "+L+" to min value")),R>h&&(R=h,r(" Set "+L+" to max value")),g[L]=""+R}function ie(){var l=g.iframe.src;!l&&g.iframe.getAttribute("data-src")&&(l=g.iframe.getAttribute("data-src"));var h=m.origin,b=l.split("/").slice(0,3).join("/");if(i.checkOrigin&&(r(" Checking connection is from: "+b),""+h!="null"&&h!==b))throw new Error("Unexpected message received from: "+h+" for "+g.iframe.id+". Message was: "+m.data+". This error can be disabled by adding the checkOrigin: false option.");return!0}function C(){return ee===(""+z).substr(0,P)}function re(){var l=g.type in{true:1,false:1};return l&&r(" Ignoring init message from meta parent page"),l}function S(l){return z.substr(z.indexOf(":")+Re+l)}function N(l){r(" MessageCallback passed: {iframe: "+g.iframe.id+", message: "+l+"}"),i.messageCallback({iframe:g.iframe,message:JSON.parse(l)}),r(" --")}function pe(){if(g.iframe===null)throw new Error("iFrame ("+g.id+") does not exist on "+V);return!0}function fe(l){var h=l.getBoundingClientRect();return x(),{x:parseInt(h.left,10)+parseInt(c.x,10),y:parseInt(h.top,10)+parseInt(c.y,10)}}function O(l){function h(){c=R,B(),r(" --")}function b(){return{x:Number(g.width)+L.x,y:Number(g.height)+L.y}}var L=l?fe(g.iframe):{x:0,y:0},R=b();r(" Reposition requested from iFrame (offset x:"+L.x+" y:"+L.y+")"),window.top!==window.self?window.parentIFrame?l?parentIFrame.scrollToOffset(R.x,R.y):parentIFrame.scrollTo(g.width,g.height):s(" Unable to scroll to requested position, window.parentIFrame not found"):h()}function B(){i.scrollCallback(c)!==!1&&d()}function $(l){function h(He){var _=fe(He);r(" Moving to in page link (#"+b+") at x: "+_.x+" y: "+_.y),c={x:_.x,y:_.y},B(),r(" --")}var b=l.split("#")[1]||"",L=decodeURIComponent(b),R=document.getElementById(L)||document.getElementsByName(L)[0];window.top!==window.self?window.parentIFrame?parentIFrame.moveToAnchor(b):r(" In page link #"+b+" not found and window.parentIFrame not found"):R?h(R):r(" In page link #"+b+" not found")}function U(){var l,h;switch(g.type){case"close":w(g.iframe),(l=i==null?void 0:i.resizedCallback)==null||l.call(i,g);break;case"message":N(S(6));break;case"scrollTo":O(!1);break;case"scrollToOffset":O(!0);break;case"inPageLink":$(S(9));break;case"reset":I(g);break;case"init":f(),(h=i==null?void 0:i.initCallback)==null||h.call(i,g.iframe);break;default:f()}}var z=m.data,g={};C()&&(r(" Received: "+z),g=H(),!re()&&pe()&&ie()&&(U(),T=!1))}function x(){c===null&&(c={x:window.pageXOffset!==void 0?window.pageXOffset:document.documentElement.scrollLeft,y:window.pageYOffset!==void 0?window.pageYOffset:document.documentElement.scrollTop},r(" Get page position: "+c.x+","+c.y))}function d(){c!==null&&(window.scrollTo(c.x,c.y),r(" Set page position: "+c.x+","+c.y),c=null)}function I(m){function f(){y(m),E("reset","reset",m.iframe)}r(" Size reset requested by "+(m.type==="init"?"host page":"iFrame")),x(),M(f,m,"init")}function y(m){function f(w){m.iframe.style[w]=m[w]+"px",r(" IFrame ("+m.iframe.id+") "+w+" set to "+m[w]+"px")}i.sizeHeight&&f("height"),i.sizeWidth&&f("width")}function M(m,f,w){w!==f.type&&j?(r(" Requesting animation frame"),j(m)):m()}function E(m,f,w){r("["+m+"] Sending msg to iframe ("+f+")"),w.contentWindow.postMessage(ee+f,"*")}function v(){function m(){function S(N){i[N]!==1/0&&i[N]!==0&&(C.style[N]=i[N]+"px",r(" Set "+N+" = "+i[N]+"px"))}S("maxHeight"),S("minHeight"),S("maxWidth"),S("minWidth")}function f(S){return C.setAttribute(Y.INITIALIZED_ATTRIBUTE,"true"),S===""&&(C.id=S="iFrameResizer"+a++,r(" Added missing iframe ID: "+S+" ("+C.src+")")),S}function w(){r(" IFrame scrolling "+(i.scrolling?"enabled":"disabled")+" for "+re),C.style.overflow=i.scrolling===!1?"hidden":"auto",C.scrolling=i.scrolling===!1?"no":"yes"}function H(){(typeof i.bodyMargin=="number"||i.bodyMargin==="0")&&(i.bodyMarginV1=i.bodyMargin,i.bodyMargin=""+i.bodyMargin+"px")}function G(){return re+":"+i.bodyMarginV1+":"+i.sizeWidth+":"+i.log+":"+i.interval+":"+i.enablePublicMethods+":"+i.autoResize+":"+i.bodyMargin+":"+i.heightCalculationMethod+":"+i.bodyBackground+":"+i.bodyPadding+":"+i.tolerance}function ie(S){e(C,"load",function(){var N=T;E("iFrame.onload",S,C),!N&&i.heightCalculationMethod in te&&I({iframe:C,height:0,width:0,type:"init"})}),E("init",S,C)}var C=this,re=f(C.id);w(),m(),H(),ie(G())}function A(m){if(typeof m!="object")throw new TypeError("Options is not an object.")}function k(m){m=m||{},A(m);for(var f in ne)ne.hasOwnProperty(f)&&(i[f]=m.hasOwnProperty(f)?m[f]:ne[f])}function X(){function m(f){if(!f.tagName)throw new TypeError("Object is not a valid DOM element");if(f.tagName.toUpperCase()!=="IFRAME")throw new TypeError("Expected <IFRAME> tag, found <"+f.tagName+">.");if(f.getAttribute(Y.INITIALIZED_ATTRIBUTE)==="true"){r(" Skipping already initialized iframe: "+(f.id||f.src));return}v.call(f)}return function(f,w){switch(k(f),typeof w){case"undefined":case"string":Array.prototype.forEach.call(document.querySelectorAll(w||"iframe"),H=>{let G=(H==null?void 0:H.src)||"";Me(H)&&m(H)});break;case"object":m(w);break;default:throw new TypeError("Unexpected data type ("+typeof w+").")}}}function Te(m){m.fn.iFrameResize=function(f){return k(f),this.filter("iframe").each(v).end()}}var a=0,T=!0,ze="message",Re=ze.length,ee="[iFrameSizer]",P=ee.length,V="",c=null,j=window.requestAnimationFrame,te={max:1,scroll:1,bodyScroll:1,documentElementScroll:1},i={},ne={autoResize:!0,bodyBackground:null,bodyMargin:null,bodyMarginV1:8,bodyPadding:null,checkOrigin:!0,enablePublicMethods:!1,heightCalculationMethod:"offset",interval:32,log:!1,maxHeight:1/0,maxWidth:1/0,minHeight:0,minWidth:0,scrolling:!1,sizeHeight:!0,sizeWidth:!1,tolerance:0,closedCallback:function(){},initCallback:function(){},messageCallback:function(){},resizedCallback:function(){},scrollCallback:function(){return!0}};t(),e(window,"message",p),window.jQuery&&Te(jQuery),typeof define=="function"&&define.amd?define([],X):typeof exports=="object"?module.exports=X():window.iFrameResize=X()}var Ye=nn;var Qe="embeddedIframes",se=e=>`${e}-overlay`,Q=e=>`${e}-div`,Le=e=>`${e}-wrapper`,we=e=>`${e}-header`,Ke=e=>`${e}-minimize-icon`,qe=e=>`${e}-close-icon`,be=e=>`${e}-minimize-text`,Ve=e=>`${e}-minimize-text-span`,je=e=>`v3_first_session_event_${e}`;var Ie=()=>Array.from(document.querySelectorAll("iframe")).filter(t=>Me(t)),Ge=()=>document.querySelectorAll(".containerModal"),ve=e=>{e.style.opacity="1",e.style.pointerEvents="auto",e.style.visibility="visible",e.style.display="block"},D=(e,t)=>{le(e.id)?(ve(e),typeof t=="function"&&t()):et(e.id,()=>{ve(e),typeof t=="function"&&t()})},de=e=>{e.style.opacity="0",e.style.visibility="hidden",e.style.pointerEvents="none",e.style.display="none"},Je=(e,t)=>{if(e){e.style.display="block";return}let n=document.getElementById(Q(t));if(n){n.style.display="block";return}},Ze=e=>{e.getAttribute(Y.INITIALIZED_ATTRIBUTE)==="true"&&e.setAttribute(Y.INITIALIZED_ATTRIBUTE,"false")},Xe=e=>{e==null||e.setAttribute(ae.HIDE_IFRAME_ATTRIBUTE,"false")};var u=window[oe.globalState]||(window[oe.globalState]={deactivateIframe:{},iframeActivated:{},processedIframes:{},resizedIframes:{},formStyles:{},managedIframes:[],iframeWindowMap:new WeakMap,initializedIframes:new Map,uninitializedIframes:new Set,pendingQueryParamsMessages:{},uniqueIframeIdMapped:new Set}),tt=()=>Object.keys(u.deactivateIframe).length,ce=e=>{var t;return(t=u.deactivateIframe[e])!=null?t:!1},Fe=e=>{var t;return(t=u.iframeActivated[e])!=null?t:!1};var nt=e=>{var t;return(t=u.processedIframes[e])!=null?t:!1};var it=e=>{if(e)return u.managedIframes.find(t=>t.contentWindow===e)},rt=e=>{if(e)return u.iframeWindowMap.get(e)},ot=()=>Array.from(u.uninitializedIframes),le=e=>{var t;return(t=u.resizedIframes[e])!=null?t:!1},at=e=>{var t;return(t=u.uniqueIframeIdMapped.has(e))!=null?t:!1},F=(e,t)=>{u.deactivateIframe[e]=t},on=(e,t)=>{u.iframeActivated[e]=t},st=(e,t)=>{u.formStyles[e]=t},Se=(e,t)=>{u.processedIframes[e]=t},dt=e=>{u.managedIframes=e},Ae=e=>{e.contentWindow&&u.iframeWindowMap.set(e.contentWindow,e)},lt=e=>{u.initializedIframes.set(e.id,e),u.uninitializedIframes.delete(e)},ct=e=>{let t=u.initializedIframes.get(e.id);return t?t!==e||!t.isConnected?(yt(e.id,t),!1):!0:!1},mt=e=>{u.initializedIframes.delete(e.id),u.uninitializedIframes.add(e)},pt=e=>{u.initializedIframes.has(e.id)||u.uninitializedIframes.add(e)},ft=(e,t)=>{u.resizedIframes[e]=t},et=(e,t)=>{u.pendingQueryParamsMessages[e]=t},ut=e=>u.pendingQueryParamsMessages[e],It=e=>{delete u.pendingQueryParamsMessages[e]},We=e=>{u.uniqueIframeIdMapped.add(e)},gt=({activationType:e,activationValue:t,deactivationType:n,deactivationValue:o,id:r,iframeDetails:s})=>{if(e==="activateOnVisit"&&Number(t)){let p=(s==null?void 0:s.visit)!==void 0&&s.visit>=Number(t);on(r,p),n==="leadCollected"&&(s!=null&&s.leadCollected)||p&&n==="deactivateAfter"&&s&&s.visit-Number(t)>=Number(o)?F(r,!0):p||F(r,!0)}else n==="leadCollected"&&(s!=null&&s.leadCollected)?F(r,!0):s&&n==="deactivateAfter"&&F(r,s.visit>Number(o))},yt=(e,t)=>{delete u.deactivateIframe[e],delete u.iframeActivated[e],delete u.processedIframes[e],delete u.resizedIframes[e],delete u.formStyles[e],delete u.pendingQueryParamsMessages[e],u.uniqueIframeIdMapped.delete(e),u.managedIframes=u.managedIframes.filter(n=>n.id!==e),u.initializedIframes.delete(e),t&&u.uninitializedIframes.delete(t)},ht=()=>{if(window[oe.cleanUp])return;window[oe.cleanUp]=!0,Array.from(u.initializedIframes.values()).forEach(t=>{t!=null&&t.isConnected||(Xe(t),yt(t.id,t))}),setTimeout(()=>{window[oe.cleanUp]=!1},1e3)};var ge={},J=e=>{if(e in ge)return ge[e];try{let t=window[e],n="__storage_test__";t.setItem(n,n),t.removeItem(n),ge[e]=!0}catch(t){ge[e]=!1}return ge[e]},K=e=>{if(!J("localStorage"))return null;let t=localStorage.getItem(e);return t||null},Z=(e,t)=>{J("localStorage")&&localStorage.setItem(e,t)},an=e=>{J("localStorage")&&localStorage.removeItem(e)},Tt=e=>{try{let t=K(e);if(!t)return null;let n=typeof t=="string"?JSON.parse(t):t;return typeof(n==null?void 0:n.expiry)!="number"?null:new Date().getTime()>n.expiry?(an(e),null):n.value}catch(t){return null}},_e=e=>{if(!J("sessionStorage"))return null;let t=sessionStorage.getItem(e);return t||null},Et=(e,t)=>{J("sessionStorage")&&sessionStorage.setItem(e,t)};var xt=e=>{let t=new URLSearchParams(e),n={};for(let[o,r]of t.entries())n[o]===void 0?n[o]=r:typeof n[o]=="string"?n[o]=[n[o],r]:Array.isArray(n[o])&&n[o].push(r);return n},Pe=e=>{let t=new URLSearchParams(e);for(let n of t.keys())if(n.startsWith("utm_"))return!0;return!1};var Ce=()=>{let e="";try{(window==null?void 0:window.top)!==window?e=window.top.location.search:e=window.location.search}catch(t){e=window.location.search}return e};Ye();function ye(){"use strict";let e=(d,I)=>`${d}${Ee}${I}`,t=()=>{try{let d=Ce();if(!Pe(d))return;let I=new URLSearchParams(d),y=_e(ue),M=new URLSearchParams(y||""),E=!1;for(let[v,A]of I.entries())if(v.startsWith("utm_")){let k=M.getAll(v);(k.length!==1||k[0]!==A)&&(M.set(v,A),E=!0)}if(E){let v=M.toString(),A=v?`?${v}`:"";Et(ue,A)}}catch(d){}};function n(d){if(!d)return;let{id:I,dataset:y}=d,M=ae.UNIQUE_ID_ATTRIBUTE;if(d.hasAttribute(M))return;if(d.setAttribute(M,"true"),I&&!at(I)){We(I);return}let E=I!=null&&I.length?I:Ne,v=1,A=E===Ne?e(E,v++):E;for(;document.getElementById(A);)A=e(E,v++);d.id=A,(!y.layoutIframeId||y.layoutIframeId===E)&&(y.layoutIframeId=A),We(A)}function o(){let d=Ge();!d||!(d!=null&&d.length)||d.forEach(I=>{I.querySelector("iframe")&&(I.style.position="absolute")})}function r(d){+d.height>=0&&(d.iframe.style.height=`${+d.height+5}px`)}function s(d){var I;if(o(),r(d),d!=null&&d.iframe){let y=(I=d==null?void 0:d.iframe)==null?void 0:I.id;if(!le(y)){ft(y,!0);let M=ut(y);M&&(It(y),M())}}}let p=d=>{Ae(d),window.iFrameResize({log:!1,checkOrigin:!1,enablePublicMethods:!0,scrolling:!0,resizedCallback:s,heightCalculationMethod:"offset",autoResize:!0,sizeWidth:!1,sizeHeight:!0},d),lt(d)},x=()=>{ht();let d=Ie();if(d.length===0)return;!window[ke]&&(t(),window[ke]=!0),d.forEach(E=>{ct(E)||(E.getAttribute(ae.HIDE_IFRAME_ATTRIBUTE)==="true"||(E.setAttribute(ae.HIDE_IFRAME_ATTRIBUTE,"true"),de(E)),n(E),Ze(E),pt(E))});let y=Ie();dt(y);let M=ot();M.length!==0&&M.forEach(E=>{p(E)})};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function d(){x(),document.removeEventListener("DOMContentLoaded",d)}):x()}var he=(e,t)=>{let n=e.parentNode;n?n.insertBefore(t,e.nextSibling):document.body.appendChild(t)},Mt=({id:e,layout:t,width:n,triggerType:o,triggerValue:r,height:s,background:p,iFrame:x,callback:d})=>{let I=document.getElementById(we(e));I&&(I.style.display=t.id==="INLINE"?"none":"flex",typeof n=="number"&&(I.style.width=window.matchMedia(`(max-width: ${n}px)`).matches?"100%":`${n}px`));let y=document.getElementById(Q(e)),M=document.getElementById(se(e));if(!y)return;t.id!=="INLINE"&&(y.style.background=`#${p}`,Number(s)>=500?y.classList.add("ep-iFrameLarge"):(t.id!=="POPUP"&&s>0&&(y.style.height=`${Number(s)}px`),y.classList.add("ep-overflow"))),D(x,()=>{y.style.display="block"}),typeof d=="function"&&d()};var Lt=`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.70875C17.91 5.31875 17.28 5.31875 16.89 5.70875L12 10.5888L7.11 5.69875C6.72 5.30875 6.09 5.30875 5.7 5.69875C5.31 6.08875 5.31 6.71875 5.7 7.10875L10.59 11.9988L5.7 16.8887C5.31 17.2787 5.31 17.9087 5.7 18.2987C6.09 18.6887 6.72 18.6887 7.11 18.2987L12 13.4087L16.89 18.2987C17.28 18.6887 17.91 18.6887 18.3 18.2987C18.69 17.9087 18.69 17.2787 18.3 16.8887L13.41 11.9988L18.3 7.10875C18.68 6.72875 18.68 6.08875 18.3 5.70875Z" fill="#475467"/></svg>`;var wt=`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 11H17C17.55 11 18 11.45 18 12C18 12.55 17.55 13 17 13H7C6.45 13 6 12.55 6 12C6 11.45 6.45 11 7 11Z" fill="#475467"/></svg>`;var q=(e,t)=>{let n=document.createElement(t||"div");return e&&n.setAttribute("id",e),n},bt=({id:e,borderRadius:t,boxShadow:n,layout:o})=>{let r=q(Q(e),"div");return r.className="ep-iFrameContainer",r.style.cssText=`border-radius: ${t}px; ${o.id!="INLINE"?`box-shadow: ${n}`:""}`,r},vt=({id:e,iFrame:t,iFrameContainer:n})=>{let o=se(e),r=document.getElementById(o);return r instanceof HTMLDivElement||(r=q(o,"div")),r.className="ep-overlay",he(t,r),r.appendChild(n),r},St=({id:e})=>{let t=q(we(e),"div");return t.className="ep-header",t},At=({id:e,layout:t})=>{let n=Ke(e),o=document.getElementById(n);return t.id!=="POPUP"&&(o=q(n,"div"),o.innerHTML=wt,o.className="ep-minimize-icon"),o},_t=({id:e,layout:t})=>{let n=qe(e),o=document.getElementById(n);return(t.id==="POPUP"||!t.allowMinimize)&&(o=q(n,"div"),o.className="ep-close-icon",o.innerHTML=Lt),o},Pt=({id:e,layout:t})=>{let n=q(be(e));return n.className="ep-minimize-text-container",n.style.display="none",t.id==="STICKY_SIDEBAR"?(n.classList.add("ep-minimize-tc-sticky"),t.isLeftAligned?n.classList.add("ep-minimize-tc-sticky-left"):n.classList.add("ep-minimize-tc-sticky-right")):t.id==="POLITE_SLIDE_IN"&&(n.classList.add("ep-minimize-tc-polite"),t.isLeftAligned?n.classList.add("ep-minimize-tc-polite-left"):n.classList.add("ep-minimize-tc-polite-right")),n},Ct=({id:e,formName:t,layout:n})=>{let o=q(Ve(e),"span");return o.innerText=n.minimizedTitle||t,o.className="ep-minimize-text",o.title=n.minimizedTitle||t,o.style.padding=n.id==="STICKY_SIDEBAR"?"20px 10px":"10px 30px",n.id==="POLITE_SLIDE_IN"&&(o.classList.add("ep-minimize-text-polite"),n.isLeftAligned?o.classList.add("ep-minimize-text-polite-left"):o.classList.add("ep-minimize-text-polite-right")),o},zt=({id:e,borderRadius:t})=>{let n=q(e);return n.setAttribute("id",Le(e)),n.className="ep-wrapper",n.style.cssText=`border-radius: ${t}px`,n};var Rt=({element:e,iFrameContainer:t,overlay:n,layout:o,id:r})=>{e&&e.addEventListener("click",()=>{t.style.display="none",o.id==="POPUP"&&n&&(n.style.display="none"),F(r,!0)})},Ht=({minimizeIconEle:e,iFrame:t,header:n,height:o,wrapperDiv:r,iFrameContainer:s,minimizeTextEle:p,layout:x})=>{e&&e.addEventListener("click",()=>{switch(de(t),n&&(n.style.display="none"),s.style.boxShadow="none",s.style.background="transparent",x.id){case"POLITE_SLIDE_IN":s.style.height="50px",s.style.width="50%";break;case"STICKY_SIDEBAR":Number(o)<=500&&(r.style.height="100%"),s.style.width="50px";break;default:break}p&&(p.style.display="flex",p.firstChild&&(p.firstChild.style.borderRadius=x.id==="STICKY_SIDEBAR"?"0px 8px 8px 0px":"8px 8px 0px 0px")),s.style.border="none"})},Nt=({minimizeTextEle:e,iFrame:t,iFrameContainer:n,header:o,styles:r,height:s,width:p,shadow:x})=>{e.firstChild&&e.firstChild.addEventListener("click",()=>{n.style.boxShadow=x,e.style.display="none",typeof p=="number"&&(window.matchMedia(`(max-width: ${p}px)`).matches?(n.style.width="100%",t.style.width="100%"):n.style.width=`${p}px`,window.matchMedia(`(max-width: ${p}px)`).matches&&(n.style.marginTop=`-${s/2}px`)),n.style.height=Number(s)>=500?"500px":`${Number(s)}px`,r!=null&&r.background&&(n.style.background=`#${r.background}`),o&&(o.style.display="flex"),D(t)})};var Dt=({iFrameContainer:e,iFrame:t,header:n,width:o,layout:r,id:s,height:p})=>{if(o===void 0||typeof o!="number")return;let x=window.matchMedia(`(max-width: ${o}px)`);x&&x.addEventListener("change",d=>{var I,y;d.matches?(((I=document.getElementById(`${s}-minimize-text`))==null?void 0:I.style.display)==="none"?(e.style.width="100%",t.style.width="100%"):r.id==="POLITE_SLIDE_IN"&&(e.style.width="50%"),n.style.width="100%"):((y=document.getElementById(`${s}-minimize-text`))==null?void 0:y.style.display)==="none"?e.style.width=`${o}px`:(e.style.marginTop=Number(p)>=500?"-250px":`-${p/2}px`,r.id==="STICKY_SIDEBAR"&&(e.style.width="50px")),n.style.width=`${o}px`})};var kt=({triggerValue:e,activationType:t,iframeActivated:n,layout:o,overlay:r,header:s,iFrameContainer:p,iFrame:x,height:d,id:I})=>{let y=be(I),M=()=>{let E=document.getElementById(y);if(!E||E.style.display==="none"){let A=document.documentElement.scrollHeight-window.innerHeight,k=A>0?window.scrollY/A*100:0;!ce(I)&&Number(e)&&k>=e&&(t==="alwaysActivated"||n)&&(o.id==="POPUP"&&r&&(r.style.display="flex"),o.id!=="INLINE"&&(s&&(s.style.display="flex"),Number(d)>=500?p.classList.add("ep-iFrameLarge"):(p.style.height=`${Number(d)}px`,p.classList.add("ep-overflow"))),D(x,()=>{p.style.display="block"}),window.removeEventListener("scroll",M))}};window.addEventListener("scroll",M,{passive:!0})};var Be=e=>typeof e!="object"?!0:Object.keys(e).length===0,W=e=>{if(!e)return null;try{return e.includes("'")&&!e.includes('"')&&(e=e.replace(/'/g,'"')),JSON.parse(e)}catch(t){return null}},Ot=e=>{try{return JSON.parse(e),!0}catch(t){return!1}};var Ut=(e,t)=>{t.isRightAligned?e.classList.add("ep-right"):e.classList.add("ep-left")},Ft=({iFrameContainer:e,height:t,layout:n})=>{e.classList.add("ep-sticky-sidebar"),Ut(e,n),Number(t)>=500?e.style.marginTop="-250px":e.style.marginTop=`-${t/2}px`},Wt=({iFrameContainer:e,layout:t})=>{e.classList.add("ep-polite-slide-in","ep-bottom"),Ut(e,t)},Bt=({iFrameContainer:e,width:t})=>{if(typeof t!="number"){e.classList.add("ep-popup");return}e.style.width=window.matchMedia(`(max-width: ${t}px)`).matches?"100%":`${t}px`,e.classList.add("ep-popup")},$t=(e,t,n)=>{Ue(t)&&e>800&&window.innerHeight>800&&(n.style.height="800px")},Yt=e=>{if(!e||Be(e))return"";let{shadow:t}=e;return!t||Be(t)?"":`${t==null?void 0:t.horizontal}px ${t==null?void 0:t.vertical}px ${t==null?void 0:t.blur}px ${t==null?void 0:t.spread}px #${t==null?void 0:t.color}`};var mn=e=>{var t,n,o,r,s,p,x,d,I,y,M,E,v,A,k,X,Te;try{let a=e.iframe;if(!a)return;let T=a.id,ze=Ce(),Re=xt(ze),ee=je(e.locationId||""),P=Tt(ee),V=new URL(document.location.href);if(P!=null&&P.url_params)for(let _ in P.url_params)_&&P.url_params[_]&&V.searchParams.append(_,P.url_params[_]);if(!Pe(V.search)){let _=_e(ue);if(_){let Xt=new URLSearchParams(_);for(let[$e,en]of Xt.entries())V.searchParams.has($e)||V.searchParams.append($e,en)}}let c=W(((t=a==null?void 0:a.dataset)==null?void 0:t.layout)||""),j=(n=a==null?void 0:a.dataset)==null?void 0:n.layoutIframeId,te=["query-params",Re,V.toString(),P!=null&&P.referrer?P==null?void 0:P.referrer:document.referrer,c?j:(o=T==null?void 0:T.split(Ee))==null?void 0:o[0]];if(nt(T)){(r=a==null?void 0:a.contentWindow)==null||r.postMessage(te,"*"),Je(null,T),!(a.getAttribute("data-iframe-resizer-initialized")==="true")&&!le(T)?ve(a):D(a);return}if(!c){(s=a==null?void 0:a.contentWindow)==null||s.postMessage(te,"*"),D(a),Se(T,!0);return}let i;e.styles&&(i=e.styles,e.entityId&&st(e.entityId,{background:i.background,width:i.width,height:i.ac_branding?i.height+(i.headerImageSrc?430:155):i.height+(i.headerImageSrc?310:35),border:i.border,boxShadow:Yt(i)}));let ne=(p=a==null?void 0:a.dataset)==null?void 0:p.triggerType,m=Number((x=a==null?void 0:a.dataset)==null?void 0:x.triggerValue),f=(d=a==null?void 0:a.dataset)==null?void 0:d.activationType,w=Number((I=a==null?void 0:a.dataset)==null?void 0:I.activationValue),H=(y=a==null?void 0:a.dataset)==null?void 0:y.deactivationType,G=Number((M=a==null?void 0:a.dataset)==null?void 0:M.deactivationValue),ie=(E=i==null?void 0:i.border)==null?void 0:E.radius,C=i==null?void 0:i.boxShadow,re=(v=a==null?void 0:a.dataset)==null?void 0:v.formName,S=a.parentNode,N=Le(T);if(S&&"id"in S&&S.id===N){(A=a==null?void 0:a.contentWindow)==null||A.postMessage(te,"*"),D(a),Se(T,!0);return}let pe=xe(T),fe=K(pe),O;if(fe)O=W(fe),O&&(O.visit=O.visit+1,Z(pe,JSON.stringify(O)));else{let _={id:T,visit:1,layout:c};Z(pe,JSON.stringify(_)),O=_}let B,$,U,z,g=i!=null&&i.height?+(i==null?void 0:i.height):(k=a==null?void 0:a.dataset)!=null&&k.height?+((X=a==null?void 0:a.dataset)==null?void 0:X.height):0,l=bt({id:T,borderRadius:ie,boxShadow:C,layout:c}),h=zt({id:T,borderRadius:ie}),b=_t({id:T,layout:c}),L=typeof+(i==null?void 0:i.width)=="number"&&+(i==null?void 0:i.width)>=0?+(i==null?void 0:i.width):void 0;if((c==null?void 0:c.id)!=="INLINE"){a.style.border="none",(c==null?void 0:c.id)==="POPUP"?(a.style.position="",$t(g,a,l),U=vt({id:T,iFrame:a,iFrameContainer:l})):(g>0&&(a.style.height=`${g}px`),a.style.position=(c==null?void 0:c.id)==="POLITE_SLIDE_IN"?"relative":"absolute",he(a,l)),h==null||h.appendChild(a),l.appendChild(h),(c==null?void 0:c.id)==="STICKY_SIDEBAR"?Ft({iFrameContainer:l,height:g,layout:c}):(c==null?void 0:c.id)==="POLITE_SLIDE_IN"?Wt({iFrameContainer:l,layout:c}):(c==null?void 0:c.id)==="POPUP"&&Bt({iFrameContainer:l,width:L}),z=St({id:T}),h.insertBefore(z,a),typeof L=="number"&&(l.style.width=window.matchMedia(`(max-width: ${L}px)`).matches?"100%":`${L}px`,a.style.width=window.matchMedia(`(max-width: ${L}px)`).matches?"100%":`${L}px`,z.style.width=window.matchMedia(`(max-width: ${L}px)`).matches?"100%":`${L}px`,Dt({iFrameContainer:l,iFrame:a,header:z,width:L,layout:c,id:T,height:g})),c!=null&&c.allowMinimize&&(B=At({id:T,layout:c}),B&&z.appendChild(B)),b&&z.appendChild(b),$=Pt({id:T,layout:c});let _=Ct({id:T,formName:re,layout:c});$.appendChild(_),h.insertBefore($,a)}else he(a,l),h==null||h.appendChild(a),l.appendChild(h);gt({activationType:f,activationValue:w,deactivationType:H,deactivationValue:G,id:T,iframeDetails:O}),ce(T)&&H!=="neverDeactivate"?(de(a),l.style.display="none",U&&(U.style.display="none")):ne==="showOnScrolling"&&Number(m)?kt({triggerValue:m,activationType:f,iframeActivated:Fe(T),layout:c,overlay:U,header:z,iFrameContainer:l,iFrame:a,height:g,id:T}):!Number(m)&&(f==="alwaysActivated"||Fe(T))&&(c.id!=="INLINE"&&(Number(g)>=500?l.classList.add("ep-iFrameLarge"):(c.id!=="POPUP"&&(l.style.height=`${Number(g)}px`),l.classList.add("ep-overflow"))),c.id==="POPUP"&&U&&(U.style.display="flex"),D(a,()=>{l.style.display="block"})),c.id!=="INLINE"&&(b&&Rt({element:b,iFrameContainer:l,overlay:U,layout:c,id:T}),B&&Ht({minimizeIconEle:B,iFrame:a,header:z,height:g,wrapperDiv:h,iFrameContainer:l,minimizeTextEle:$,layout:c}),$&&Nt({minimizeTextEle:$,iFrame:a,iFrameContainer:l,header:z,styles:i,height:g,width:L,shadow:i==null?void 0:i.boxShadow})),(Te=a==null?void 0:a.contentWindow)==null||Te.postMessage(te,"*");let He=()=>{Mt({id:T,layout:c,width:i==null?void 0:i.width,triggerType:ne,triggerValue:m,height:g,background:i==null?void 0:i.background,iFrame:a})};a.addEventListener("load",He),Se(T,!0)}catch(a){}},Qt=mn;var pn=e=>{var r;let t=s=>K(s),n=()=>{let s=K("_ud");return s&&typeof s=="string"?W(s):null},o=s=>{var d;let p=(d=n())!=null?d:void 0;return(p==null?void 0:p.location_id)===s?p:void 0};if(e.locationId){let s=e.iframe;if(!s)return;(r=s==null?void 0:s.contentWindow)==null||r.postMessage(["sticky-contacts",o(e.locationId),t(e.locationId)],"*")}},Kt=pn;var fn=e=>{e.url&&window.history.replaceState(null,"",e.url)},qt=fn;var un=(e,t)=>{var n;if(J("localStorage"))try{if(e.userDataKey&&e.iframeId){let o=xe(e.iframeId);if(e.userDataKey===o){let r=K(o);if(r){let p=JSON.parse(r);Z(o,JSON.stringify({...p,leadCollected:!0}));let x=(n=e==null?void 0:e.iframe)==null?void 0:n.dataset.layout,d=W(x);if(d&&d.id!=="INLINE"){let I=document.getElementById(se(e.iframeId)),y=document.getElementById(Q(e.iframeId));setTimeout(()=>{I&&(I.style.display="none"),y&&(y.style.display="none",F(e.iframeId,!0))},5e3)}}}}else Z(e.userDataKey,e.cookiePayload)}e.locationId&&e.fingerprint&&Z(e.locationId,e.fingerprint)}catch(o){}},Vt=un;var jt=e=>{let{data:t,source:n}=e,o=t[0];if(!new Set(["iframeLoaded","fetch-query-params","fetch-sticky-contacts","set-sticky-contacts","modify-parent-url"]).has(o))return{iframe:void 0,action:o,locationId:null};let s=rt(n);if(!s&&n&&(s=it(n),s&&Ae(s)),!s&&n){let x=Ie().find(d=>d.contentWindow===n);x&&(s=x)}switch(o){case"fetch-sticky-contacts":return{iframe:s,action:o,locationId:t[1]||null};case"set-sticky-contacts":{let p=t[2],x=!Ot(p);return{iframe:s,action:o,userDataKey:t[1]||null,iframeId:x&&p?p:null,cookiePayload:!x&&p?p:null,locationId:t[3]||null,fingerprint:t[4]||null}}case"fetch-query-params":return{iframe:s,action:o,windowName:t[1]||null,locationId:t[2]||null,entityId:t[3]||null,styles:W(t[4])||null};case"modify-parent-url":return{iframe:s,action:o,locationId:null,url:t[1]||null};default:return{iframe:s,action:o,locationId:null}}};var Gt="__ghl_message_handler_registered__",Jt=()=>{window[Gt]||(window[Gt]=!0,window.addEventListener("message",e=>{let t=jt(e);switch(t.action){case"iframeLoaded":{if(!t.iframe)return;mt(t.iframe),t.iframe.setAttribute(Y.INITIALIZED_ATTRIBUTE,"false"),ye();break}case"fetch-query-params":Qt(t);break;case"fetch-sticky-contacts":Kt(t);break;case"set-sticky-contacts":Vt(t,e);break;case"modify-parent-url":qt(t);break;default:break}}))};var Zt=()=>{if(window!=null&&window[Oe])return;window[Oe]=!0;let e=document.createElement("style");e.type="text/css",e.id=Qe;let t=".ep-iFrameContainer{width:100%}.ep-header,.ep-iFrameContainer,.ep-overlay{display:none}.ep-iFrame{border:none}.ep-iFrameLarge{height:500px;overflow:auto}.ep-overflow{overflow:unset}.ep-overlay{z-index:10000;position:fixed;top:0;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);transition:opacity .2s;width:100%;justify-content:center;align-items:center}.ep-wrapper{width:100%}.ep-header{justify-content:flex-end;position:fixed;border-radius:5px;z-index:1}.ep-close-icon,.ep-minimize-icon{background:#e8e8e8;width:23px;height:23px;margin:3px 6px 0 0;z-index:999;color:#4a4a4a;transition:background .25s;text-align:center;cursor:pointer}.ep-minimize-icon{border-radius:50%;line-height:.3ch;font-size:22px;border:1px solid #ccc;font-family:sans-serif}.ep-close-icon{border-radius:50%;line-height:1.5ch;font-size:20px;border:1px solid #ccc;font-family:Montserrat}.ep-minimize-text-container{height:100%;text-align:center}.ep-minimize-tc-sticky{writing-mode:vertical-lr;justify-content:center}.ep-minimize-tc-sticky-left{transform:rotate(360deg)}.ep-minimize-tc-sticky-right{transform:rotate(180deg)}.ep-minimize-tc-polite{align-items:end;width:100%}.ep-minimize-tc-polite-left{justify-content:start}.ep-minimize-tc-polite-right{justify-content:end}.ep-minimize-text{background-color:#000;cursor:pointer;color:#fff;white-space:nowrap;overflow:hidden;max-width:380px;text-overflow:ellipsis}.ep-minimize-text-polite{margin-bottom:8px}.ep-minimize-text-polite-left{margin-left:25px;margin-right:8px}.ep-minimize-text-polite-right{margin-left:8px;margin-right:25px}.ep-sticky-sidebar{top:50%;z-index:9999;position:fixed}.ep-height,.ep-sticky-sidebar .ep-wrapper{height:100%}.ep-polite-slide-in{z-index:9999;position:fixed}.ep-inline,.ep-popup{position:relative;margin:auto}.ep-polite-slide-in .ep-wrapper{position:absolute}.ep-popup{z-index:9999}.ep-inline{overflow:unset;boxshadow:none}.ep-right{right:15px}.ep-left{left:15px}.ep-bottom{bottom:15px}@media only screen and (max-width:550px){.ep-iFrame,.ep-iFrameContainer{width:100%}.ep-popup{width:100%!important}.ep-right{right:0}.ep-left{left:0}.ep-bottom{bottom:0}}";e.innerText=t,document.head.appendChild(e)};Zt();Jt();ye();window.addEventListener("error",function(e){e.message.includes("iframeResizer")});})();</script>
 <!-- floating WhatsApp button -->
 <a href="https://wa.me/4915165241268" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp kontaktieren">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
